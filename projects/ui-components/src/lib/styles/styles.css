@@ -1,6 +1,17 @@
 @import "tailwindcss";
 
 @theme {
+  /* Custom Properties */
+  --transition-property-visuals: color, background-color, border-color, text-decoration-color, fill, stroke, box-shadow;
+
+  /* Durations */
+  --transition-duration-none: 0ms;
+  --transition-duration-xs: 75ms;
+  --transition-duration-sm: 150ms;
+  --transition-duration-md: 200ms;
+  --transition-duration-lg: 300ms;
+  --transition-duration-xl: 500ms;
+
   /* Scale Factors */
   --scale-l-50: 0.97;
   --scale-l-100: 0.92;

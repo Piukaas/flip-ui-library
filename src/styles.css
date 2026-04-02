@@ -3,3 +3,15 @@
 @source "../projects/ui-components/src/lib/**/*.ts";
 @source "../projects/ui-components/src/lib/**/*.html";
 @source "../projects/ui-components/src/lib/**/*.css";
+
+flip-button[data-variant="primary"] {
+  &::part(button) {
+    --flip-primary-seed: yellow;
+    background-color: yellow;
+  }
+
+  &::part(label) {
+    color: black;
+    text-decoration: red wavy underline;
+  }
+}

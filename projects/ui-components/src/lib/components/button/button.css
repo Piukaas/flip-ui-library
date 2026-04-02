@@ -10,7 +10,7 @@
 
 button {
   @apply h-10 px-6 flex items-center justify-center gap-2;
-  @apply text-sm font-semibold transition-all duration-200;
+  @apply text-sm font-semibold transition-visuals duration-md;
   @apply cursor-pointer select-none;
   @apply rounded-lg shadow-sm border-2 border-solid;
   @apply disabled:pointer-events-none disabled:opacity-50;
