@@ -12,41 +12,41 @@ button {
   @apply h-10 px-6 flex items-center justify-center gap-2;
   @apply text-sm font-semibold transition-colors duration-200;
   @apply cursor-pointer select-none;
-  @apply rounded-lg shadow-sm border-2 outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+  @apply rounded-lg shadow-sm border-2;
   @apply disabled:pointer-events-none disabled:opacity-50;
 }
 
 :host([data-variant="primary"]) button {
-  @apply bg-primary-600 border-primary-600 text-white;
-  @apply hover:bg-primary-700 active:bg-primary-800 focus-visible:ring-primary-300;
+  @apply bg-primary-500 border-primary-600 text-white;
+  @apply hover:bg-primary-700 active:bg-primary-800;
 }
 
 :host([data-variant="secondary"]) button {
-  @apply bg-secondary-200 border-secondary-200 text-secondary-900;
-  @apply hover:bg-secondary-300 active:bg-secondary-400 focus-visible:ring-secondary-300;
+  @apply bg-secondary-500 border-secondary-600 text-secondary-900;
+  @apply hover:bg-secondary-700 active:bg-secondary-800;
 }
 
 :host([data-variant="success"]) button {
-  @apply bg-success-600 border-success-600 text-white;
-  @apply hover:bg-success-700 active:bg-success-800 focus-visible:ring-success-300;
+  @apply bg-success-500 border-success-600 text-white;
+  @apply hover:bg-success-700 active:bg-success-800;
 }
 
 :host([data-variant="warning"]) button {
-  @apply bg-warning-400 border-warning-400 text-black;
-  @apply hover:bg-warning-500 active:bg-warning-600 focus-visible:ring-warning-300;
+  @apply bg-warning-500 border-warning-600 text-black;
+  @apply hover:bg-warning-700 active:bg-warning-800;
 }
 
 :host([data-variant="danger"]) button {
-  @apply bg-danger-600 border-danger-600 text-white;
-  @apply hover:bg-danger-700 active:bg-danger-800 focus-visible:ring-danger-300;
+  @apply bg-danger-500 border-danger-600 text-white;
+  @apply hover:bg-danger-700 active:bg-danger-800;
 }
 
 :host([data-variant="info"]) button {
-  @apply bg-info-500 border-info-500 text-white;
-  @apply hover:bg-info-600 active:bg-info-700 focus-visible:ring-info-300;
+  @apply bg-info-500 border-info-600 text-white;
+  @apply hover:bg-info-700 active:bg-info-800;
 }
 
 :host([data-variant="ghost"]) button {
-  @apply bg-transparent border-transparent text-secondary-900;
-  @apply hover:bg-secondary-100 active:bg-secondary-200 focus-visible:ring-secondary-300;
+  @apply bg-transparent border-transparent text-primary-500;
+  @apply hover:bg-secondary-700 active:bg-secondary-800;
 }
