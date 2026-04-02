@@ -1,1 +1,4 @@
 @import "tailwindcss";
+
+@source "../projects/ui-components/src/lib/**/*.ts";
+@source "../projects/ui-components/src/lib/**/*.html";

@@ -2,6 +2,26 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
+  "schematics": {
+    "@schematics/angular:component": {
+      "changeDetection": "OnPush",
+      "viewEncapsulation": "ShadowDom",
+      "style": "css",
+      "skipTests": true,
+      "flat": false,
+      "displayBlock": true,
+      "inlineStyle": false,
+      "inlineTemplate": false
+    },
+    "@schematics/angular:directive": {
+      "skipTests": true,
+      "flat": true
+    },
+    "@schematics/angular:service": {
+      "skipTests": true,
+      "flat": true
+    }
+  },
   "projects": {
     "flip-ui-library": {
       "projectType": "application",
@@ -27,19 +47,19 @@
           },
           "configurations": {
             "production": {
+              "browser": "src/main.prod.ts",
+              "outputHashing": "none",
+              "optimization": true,
+              "extractLicenses": true,
+              "sourceMap": false,
+              "namedChunks": false,
               "budgets": [
                 {
                   "type": "initial",
                   "maximumWarning": "500kB",
                   "maximumError": "1MB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
                 }
-              ],
-              "outputHashing": "all"
+              ]
             },
             "development": {
               "optimization": false,
@@ -86,6 +106,12 @@
       "root": "projects/ui-components",
       "sourceRoot": "projects/ui-components/src",
       "prefix": "flip",
+      "schematics": {
+        "@schematics/angular:component": {
+          "skipTests": true,
+          "flat": false
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular/build:ng-packagr",
