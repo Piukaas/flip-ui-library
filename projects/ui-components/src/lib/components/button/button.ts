@@ -18,7 +18,7 @@ type ButtonVariant = "primary" | "secondary" | "danger" | "warning" | "success" 
 export class Button {
   public readonly id: InputSignal<string | undefined> = input();
   public readonly type: InputSignal<ButtonType> = input<ButtonType>("button");
-  public readonly disabled: InputSignal<boolean> = input(true);
+  public readonly disabled: InputSignal<boolean> = input(false);
   public readonly label: InputSignal<string | undefined> = input();
   public readonly ariaLabel: InputSignal<string | undefined> = input();
   public readonly variant: InputSignal<ButtonVariant> = input<ButtonVariant>("primary");
