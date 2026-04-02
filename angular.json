@@ -136,7 +136,9 @@
           "options": {
             "lintFilePatterns": [
               "src/**/*.ts",
-              "src/**/*.html"
+              "src/**/*.html",
+              "projects/ui-components/**/*.ts",
+              "projects/ui-components/**/*.html"
             ]
           }
         }
