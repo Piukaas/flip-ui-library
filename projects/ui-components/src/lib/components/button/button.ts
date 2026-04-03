@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, input, InputSignal, ViewEncapsulation } from "@angular/core";
 
 type ButtonType = "button" | "submit" | "reset";
-type ButtonVariant = "cta" | "light" | "ghost" | "text" | "outline";
+type ButtonVariant = "cta" | "default" | "light" | "ghost" | "text" | "outline";
 type ButtonColor = "primary" | "secondary" | "danger" | "warning" | "success" | "info";
 
 @Component({
@@ -23,6 +23,6 @@ export class Button {
   public readonly disabled: InputSignal<boolean> = input(false);
   public readonly label: InputSignal<string | undefined> = input();
   public readonly ariaLabel: InputSignal<string | undefined> = input();
-  public readonly variant: InputSignal<ButtonVariant> = input<ButtonVariant>("cta");
+  public readonly variant: InputSignal<ButtonVariant> = input<ButtonVariant>("default");
   public readonly color: InputSignal<ButtonColor> = input<ButtonColor>("primary");
 }

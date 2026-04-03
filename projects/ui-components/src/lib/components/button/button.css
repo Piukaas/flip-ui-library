@@ -1,6 +1,7 @@
 @reference "../../styles/styles.css";
 
 :host {
+  --flip-btn-default: theme('colors.primary.300');
   --flip-btn-main: theme('colors.primary.500');
   --flip-btn-border: theme('colors.primary.600');
   --flip-btn-hover: theme('colors.primary.600');
@@ -16,6 +17,7 @@
 }
 
 :host([data-variant="cta"]) button,
+:host([data-variant="default"]) button,
 :host([data-variant="light"]) button {
   @apply flip-face flip-border;
   box-shadow: var(--shadow-flip-raised);
@@ -27,6 +29,7 @@
 }
 
 :host([data-color="secondary"]) {
+  --flip-btn-default: theme('colors.secondary.300');
   --flip-btn-main: theme('colors.secondary.500');
   --flip-btn-border: theme('colors.secondary.600');
   --flip-btn-hover: theme('colors.secondary.600');
@@ -36,6 +39,7 @@
 }
 
 :host([data-color="success"]) {
+  --flip-btn-default: theme('colors.success.300');
   --flip-btn-main: theme('colors.success.500');
   --flip-btn-border: theme('colors.success.600');
   --flip-btn-hover: theme('colors.success.600');
@@ -45,6 +49,7 @@
 }
 
 :host([data-color="warning"]) {
+  --flip-btn-default: theme('colors.warning.300');
   --flip-btn-main: theme('colors.warning.500');
   --flip-btn-border: theme('colors.warning.600');
   --flip-btn-hover: theme('colors.warning.600');
@@ -54,6 +59,7 @@
 }
 
 :host([data-color="danger"]) {
+  --flip-btn-default: theme('colors.danger.300');
   --flip-btn-main: theme('colors.danger.500');
   --flip-btn-border: theme('colors.danger.600');
   --flip-btn-hover: theme('colors.danger.600');
@@ -63,6 +69,7 @@
 }
 
 :host([data-color="info"]) {
+  --flip-btn-default: theme('colors.info.300');
   --flip-btn-main: theme('colors.info.500');
   --flip-btn-border: theme('colors.info.600');
   --flip-btn-hover: theme('colors.info.600');
@@ -73,7 +80,7 @@
 
 button {
   @apply h-10 px-6 flex items-center justify-center gap-2;
-  @apply text-sm font-semibold flip-transition;
+  @apply text-sm font-sans font-semibold flip-transition;
   @apply cursor-pointer select-none flip-radius;
 
   @apply border border-solid border-transparent;
@@ -90,6 +97,19 @@ button {
 
   &:active {
     background-color: var(--flip-btn-active);
+  }
+}
+
+:host([data-variant="default"]) button {
+  background-color: var(--flip-btn-default);
+  color: var(--flip-btn-text);
+
+  &:hover {
+    background-color: var(--flip-btn-main);
+  }
+
+  &:active {
+    background-color: var(--flip-btn-hover);
   }
 }
 

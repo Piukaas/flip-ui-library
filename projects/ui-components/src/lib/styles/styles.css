@@ -1,6 +1,12 @@
 @import "tailwindcss";
 
 @theme {
+  /* Fonts */
+  --flip-font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --flip-font-mono: "SF Mono", "Segoe UI Mono", "Cascadia Code", "Source Code Pro", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-sans: var(--flip-font-sans), sans-serif;
+  --font-mono: var(--flip-font-mono), monospace;
+
   /* Transitioning */
   --transition-property-visuals: color, background-color, border-color, text-decoration-color, fill, stroke, box-shadow, transform, translate, scale, rotate, filter, opacity;
   --transition-duration-none: 0ms;
@@ -39,10 +45,10 @@
 
   /* Main Colors */
   --flip-primary-color: oklch(0.756 0.153 71.6);
-  --flip-secondary-color: oklch(0.62 0.06 65.0);
+  --flip-secondary-color: oklch(0.65 0.06 65.0);
   --flip-success-color: oklch(0.72 0.12 145.0);
   --flip-warning-color: oklch(0.778 0.156 81.885);
-  --flip-danger-color: oklch(0.60 0.15 30.0);
+  --flip-danger-color: oklch(0.68 0.15 30.0);
   --flip-info-color: oklch(0.68 0.10 230.0);
 
   /* Glass & Contrast */
@@ -54,8 +60,8 @@
   --flip-color-secondary-text: color-mix(in oklch, var(--flip-on-light), var(--flip-secondary-color) 10%);
   --flip-color-success-text: color-mix(in oklch, var(--flip-on-light), var(--flip-success-color) 10%);
   --flip-color-warning-text: color-mix(in oklch, var(--flip-on-light), var(--flip-warning-color) 10%);
-  --flip-color-danger-text: color-mix(in oklch, var(--flip-on-dark), var(--flip-danger-color) 10%);
-  --flip-color-info-text: color-mix(in oklch, var(--flip-on-dark), var(--flip-info-color) 10%);
+  --flip-color-danger-text: color-mix(in oklch, var(--flip-on-light), var(--flip-danger-color) 10%);
+  --flip-color-info-text: color-mix(in oklch, var(--flip-on-light), var(--flip-info-color) 10%);
 
   --color-primary-text: var(--flip-color-primary-text);
   --color-secondary-text: var(--flip-color-secondary-text);
