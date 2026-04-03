@@ -6,7 +6,7 @@
   --flip-btn-hover: theme('colors.primary.600');
   --flip-btn-active: theme('colors.primary.700');
   --flip-btn-soft: theme('colors.primary.100');
-  --flip-btn-text: var(--color-primary-text);
+  --flip-btn-text: var('colors.primary-text');
 
   @apply inline-block;
 
@@ -32,7 +32,7 @@
   --flip-btn-hover: theme('colors.secondary.600');
   --flip-btn-active: theme('colors.secondary.700');
   --flip-btn-soft: theme('colors.secondary.100');
-  --flip-btn-text: var(--color-secondary-text);
+  --flip-btn-text: theme('colors.secondary-text');
 }
 
 :host([data-color="success"]) {
@@ -41,7 +41,7 @@
   --flip-btn-hover: theme('colors.success.600');
   --flip-btn-active: theme('colors.success.700');
   --flip-btn-soft: theme('colors.success.100');
-  --flip-btn-text: var(--color-success-text);
+  --flip-btn-text: theme('colors.success-text');
 }
 
 :host([data-color="warning"]) {
@@ -50,7 +50,7 @@
   --flip-btn-hover: theme('colors.warning.600');
   --flip-btn-active: theme('colors.warning.700');
   --flip-btn-soft: theme('colors.warning.100');
-  --flip-btn-text: var(--color-warning-text);
+  --flip-btn-text: theme('colors.warning-text');
 }
 
 :host([data-color="danger"]) {
@@ -59,7 +59,7 @@
   --flip-btn-hover: theme('colors.danger.600');
   --flip-btn-active: theme('colors.danger.700');
   --flip-btn-soft: theme('colors.danger.100');
-  --flip-btn-text: var(--color-danger-text);
+  --flip-btn-text: theme('colors.danger-text');
 }
 
 :host([data-color="info"]) {
@@ -68,7 +68,7 @@
   --flip-btn-hover: theme('colors.info.600');
   --flip-btn-active: theme('colors.info.700');
   --flip-btn-soft: theme('colors.info.100');
-  --flip-btn-text: var(--color-info-text);
+  --flip-btn-text: theme('colors.info-text');
 }
 
 button {

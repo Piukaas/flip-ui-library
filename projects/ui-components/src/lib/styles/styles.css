@@ -22,17 +22,17 @@
   --radius-full: 9999px;
 
   /* Scale Factors */
-  --scale-l-50: 0.97;
-  --scale-l-100: 0.92;
-  --scale-l-200: 0.84;
-  --scale-l-300: 0.75;
-  --scale-l-400: 0.65;
-  --scale-l-500: 0.60;
-  --scale-l-600: 0.50;
-  --scale-l-700: 0.40;
-  --scale-l-800: 0.30;
-  --scale-l-900: 0.20;
-  --scale-l-950: 0.12;
+  --scale-l-50: 0.98;
+  --scale-l-100: 0.95;
+  --scale-l-200: 0.90;
+  --scale-l-300: 0.84;
+  --scale-l-400: 0.78;
+  --scale-l-500: 0.72;
+  --scale-l-600: 0.66;
+  --scale-l-700: 0.60;
+  --scale-l-800: 0.54;
+  --scale-l-900: 0.48;
+  --scale-l-950: 0.42;
 
   /* Chroma Tint Factor */
   --scale-c-tint: calc(c * 0.3);
@@ -49,12 +49,20 @@
   --flip-border-glass: rgba(255, 255, 255, 0.4);
   --flip-on-light: oklch(0.313 0.049 54.7);
   --flip-on-dark: oklch(0.957 0.058 102.2);
-  --color-primary-text: var(--flip-on-dark);
-  --color-secondary-text: var(--flip-on-light);
-  --color-success-text: var(--flip-on-dark);
-  --color-warning-text: var(--flip-on-light);
-  --color-danger-text: var(--flip-on-dark);
-  --color-info-text: var(--flip-on-dark);
+
+  --flip-color-primary-text: color-mix(in oklch, var(--flip-on-light), var(--flip-primary-color) 10%);
+  --flip-color-secondary-text: color-mix(in oklch, var(--flip-on-light), var(--flip-secondary-color) 10%);
+  --flip-color-success-text: color-mix(in oklch, var(--flip-on-light), var(--flip-success-color) 10%);
+  --flip-color-warning-text: color-mix(in oklch, var(--flip-on-light), var(--flip-warning-color) 10%);
+  --flip-color-danger-text: color-mix(in oklch, var(--flip-on-dark), var(--flip-danger-color) 10%);
+  --flip-color-info-text: color-mix(in oklch, var(--flip-on-dark), var(--flip-info-color) 10%);
+
+  --color-primary-text: var(--flip-color-primary-text);
+  --color-secondary-text: var(--flip-color-secondary-text);
+  --color-success-text: var(--flip-color-success-text);
+  --color-warning-text: var(--flip-color-warning-text);
+  --color-danger-text: var(--flip-color-danger-text);
+  --color-info-text: var(--flip-color-info-text);
 
   --flip-shadow-color: rgba(0, 0, 0, 0.5);
   --shadow-flip-raised: 2px 2px 0 0 var(--flip-shadow-color),
