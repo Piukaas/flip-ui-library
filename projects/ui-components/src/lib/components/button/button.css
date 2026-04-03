@@ -79,12 +79,12 @@
 }
 
 button {
-  @apply h-10 px-6 flex items-center justify-center gap-2;
-  @apply text-sm font-sans font-semibold flip-transition;
+  @apply flex items-center justify-center gap-2;
+  @apply font-sans font-semibold flip-transition;
   @apply cursor-pointer select-none flip-radius;
-
   @apply border border-solid border-transparent;
   @apply disabled:pointer-events-none disabled:opacity-50;
+  font-size: inherit;
 }
 
 :host([data-variant="cta"]) button {
@@ -162,4 +162,24 @@ button {
   &:active {
     @apply translate-y-[2px] translate-x-0 opacity-70;
   }
+}
+
+:host([data-wide="true"]) {
+  @apply w-full;
+}
+
+:host([data-wide="true"]) button {
+  @apply w-full;
+}
+
+:host([data-size="small"]) button {
+  @apply h-8 px-4 text-xs;
+}
+
+:host([data-size="medium"]) button {
+  @apply h-10 px-6 text-sm;
+}
+
+:host([data-size="large"]) button {
+  @apply h-12 px-8 text-base;
 }

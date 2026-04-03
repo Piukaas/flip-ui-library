@@ -1,8 +1,17 @@
-import { ChangeDetectionStrategy, Component, input, InputSignal, ViewEncapsulation } from "@angular/core";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  input,
+  InputSignal,
+  Signal,
+  ViewEncapsulation
+} from "@angular/core";
 
 type ButtonType = "button" | "submit" | "reset";
 type ButtonVariant = "cta" | "default" | "light" | "ghost" | "text" | "outline";
 type ButtonColor = "primary" | "secondary" | "danger" | "warning" | "success" | "info";
+type ButtonSize = "small" | "medium" | "large";
 
 @Component({
   selector: "flip-button",
@@ -15,6 +24,8 @@ type ButtonColor = "primary" | "secondary" | "danger" | "warning" | "success" | 
     "[attr.id]": "id()",
     "[attr.data-variant]": "variant()",
     "[attr.data-color]": "color()",
+    "[attr.data-size]": "!isText() ? size() : undefined",
+    "[attr.data-wide]": "wide() && !isText() ? true : undefined",
   }
 })
 export class Button {
@@ -25,4 +36,8 @@ export class Button {
   public readonly ariaLabel: InputSignal<string | undefined> = input();
   public readonly variant: InputSignal<ButtonVariant> = input<ButtonVariant>("default");
   public readonly color: InputSignal<ButtonColor> = input<ButtonColor>("primary");
+  public readonly size: InputSignal<ButtonSize> = input<ButtonSize>("medium");
+  public readonly wide: InputSignal<boolean> = input(false);
+
+  protected readonly isText: Signal<boolean> = computed(() => this.variant() === "text");
 }
