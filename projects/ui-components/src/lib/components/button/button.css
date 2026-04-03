@@ -17,6 +17,7 @@
 
 :host([data-variant="cta"]) button,
 :host([data-variant="light"]) button {
+  @apply flip-face flip-border;
   box-shadow: var(--shadow-flip-raised);
 
   &:hover {
@@ -75,13 +76,12 @@ button {
   @apply text-sm font-semibold flip-transition;
   @apply cursor-pointer select-none flip-radius;
 
-  @apply border-2 border-solid;
+  @apply border border-solid border-transparent;
   @apply disabled:pointer-events-none disabled:opacity-50;
 }
 
 :host([data-variant="cta"]) button {
   background-color: var(--flip-btn-main);
-  border-color: var(--flip-btn-border);
   color: var(--flip-btn-text);
 
   &:hover {
@@ -95,7 +95,6 @@ button {
 
 :host([data-variant="light"]) button {
   background-color: var(--flip-btn-soft);
-  border-color: transparent;
   color: var(--flip-btn-main);
 
   &:hover {
@@ -114,8 +113,8 @@ button {
   color: var(--flip-btn-main);
 
   &:hover {
+    @apply flip-face flip-border;
     background-color: var(--flip-btn-soft);
-    border-color: var(--flip-btn-soft);
   }
 
   &:active {
@@ -124,7 +123,7 @@ button {
 }
 
 :host([data-variant="text"]) button {
-  @apply relative overflow-hidden bg-transparent border-transparent shadow-none;
+  @apply relative overflow-hidden bg-transparent shadow-none;
   @apply rounded-none px-0 h-fit;
   color: var(--flip-btn-main);
 

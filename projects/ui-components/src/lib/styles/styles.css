@@ -38,16 +38,17 @@
   --scale-c-tint: calc(c * 0.3);
 
   /* Main Colors */
-  --flip-primary-color: oklch(0.588 0.269 320.491);
-  --flip-secondary-color: oklch(0.60 0.02 250);
-  --flip-success-color: oklch(0.60 0.16 150);
-  --flip-warning-color: oklch(0.82 0.14 85);
-  --flip-danger-color: oklch(0.461 0.178 27.947);
-  --flip-info-color: oklch(0.60 0.15 240);
+  --flip-primary-color: oklch(0.756 0.153 71.6);
+  --flip-secondary-color: oklch(0.62 0.06 65.0);
+  --flip-success-color: oklch(0.72 0.12 145.0);
+  --flip-warning-color: oklch(0.778 0.156 81.885);
+  --flip-danger-color: oklch(0.60 0.15 30.0);
+  --flip-info-color: oklch(0.68 0.10 230.0);
 
-  --flip-on-light: oklch(from var(--flip-primary-color) 0.20 0.01 h);
-  --flip-on-dark: oklch(from var(--flip-primary-color) 0.98 0.01 h);
-
+  /* Glass & Contrast */
+  --flip-border-glass: rgba(255, 255, 255, 0.4);
+  --flip-on-light: oklch(0.313 0.049 54.7);
+  --flip-on-dark: oklch(0.957 0.058 102.2);
   --color-primary-text: var(--flip-on-dark);
   --color-secondary-text: var(--flip-on-light);
   --color-success-text: var(--flip-on-dark);
@@ -171,3 +172,16 @@
   }
 }
 
+@utility flip-face {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.02) 40%,
+    rgba(0, 0, 0, 0.02) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+}
+
+@utility flip-border {
+  border: 1px solid var(--flip-border-glass);
+}

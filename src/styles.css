@@ -6,11 +6,10 @@
 @source "../projects/ui-components/src/lib/**/*.css";
 
 flip-button[data-color="primary"] {
-  --flip-primary-color: black;
-  --flip-btn-shadow: deeppink;
-  --flip-btn-text: var(--flip-on-dark);
+  /*--flip-primary-color: black;*/
+  /*--flip-btn-text: var(--flip-on-dark);*/
 
   &::part(label) {
-    text-decoration: red wavy underline;
+    /*text-decoration: red wavy underline;*/
   }
 }
