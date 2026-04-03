@@ -55,6 +55,12 @@
   --color-danger-text: var(--flip-on-dark);
   --color-info-text: var(--flip-on-dark);
 
+  --flip-shadow-color: rgba(0, 0, 0, 0.5);
+  --shadow-flip-raised: 2px 2px 0 0 var(--flip-shadow-color),
+  4px 4px 12px 0 rgba(0, 0, 0, 0.2);
+
+  --shadow-flip-pressed: 1px 1px 0 0 var(--flip-shadow-color);
+
   /* Primary */
   --color-primary-50: oklch(from var(--flip-primary-color) var(--scale-l-50) var(--scale-c-tint) h);
   --color-primary-100: oklch(from var(--flip-primary-color) var(--scale-l-100) var(--scale-c-tint) h);
