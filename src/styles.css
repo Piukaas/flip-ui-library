@@ -1,16 +1,16 @@
+@import "tailwindcss";
 @import "../projects/ui-components/src/lib/styles/styles.css";
 
 @source "../projects/ui-components/src/lib/**/*.ts";
 @source "../projects/ui-components/src/lib/**/*.html";
 @source "../projects/ui-components/src/lib/**/*.css";
 
-flip-button[data-variant="primary"] {
-  &::part(button) {
-    --flip-primary-seed: yellow;
-  }
+flip-button[data-color="primary"] {
+  --flip-primary-color: black;
+  --flip-btn-shadow: deeppink;
+  --flip-btn-text: var(--flip-on-dark);
 
   &::part(label) {
-    color: black;
     text-decoration: red wavy underline;
   }
 }

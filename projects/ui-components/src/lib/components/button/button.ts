@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, input, InputSignal, ViewEncapsulation } from "@angular/core";
 
 type ButtonType = "button" | "submit" | "reset";
-type ButtonVariant = "primary" | "secondary" | "danger" | "warning" | "success" | "info" | "ghost";
+type ButtonVariant = "cta" | "light" | "ghost" | "text" | "outline";
+type ButtonColor = "primary" | "secondary" | "danger" | "warning" | "success" | "info";
 
 @Component({
   selector: "flip-button",
@@ -13,6 +14,7 @@ type ButtonVariant = "primary" | "secondary" | "danger" | "warning" | "success" 
   host: {
     "[attr.id]": "id()",
     "[attr.data-variant]": "variant()",
+    "[attr.data-color]": "color()",
   }
 })
 export class Button {
@@ -21,5 +23,6 @@ export class Button {
   public readonly disabled: InputSignal<boolean> = input(false);
   public readonly label: InputSignal<string | undefined> = input();
   public readonly ariaLabel: InputSignal<string | undefined> = input();
-  public readonly variant: InputSignal<ButtonVariant> = input<ButtonVariant>("primary");
+  public readonly variant: InputSignal<ButtonVariant> = input<ButtonVariant>("cta");
+  public readonly color: InputSignal<ButtonColor> = input<ButtonColor>("primary");
 }

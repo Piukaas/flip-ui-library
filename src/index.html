@@ -2,21 +2,103 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Flip</title>
+  <title>Flip - Component Kitchen Sink</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    /* Simple reset for the demo grid */
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+      background: #f9fafb;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #e5e7eb;
+      padding-bottom: 0.5rem;
+      text-transform: capitalize;
+    }
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+  </style>
 </head>
 <body>
 <app-root></app-root>
-<flip-button label="Submit" variant="primary"></flip-button>
-<flip-button label="Next Step" variant="secondary"></flip-button>
+<!-- CTA VARIANT -->
+<section>
+  <h2>Variant: CTA</h2>
+  <div class="grid">
+    <flip-button label="Primary" variant="cta" color="primary"></flip-button>
+    <flip-button label="Secondary" variant="cta" color="secondary"></flip-button>
+    <flip-button label="Success" variant="cta" color="success"></flip-button>
+    <flip-button label="Warning" variant="cta" color="warning"></flip-button>
+    <flip-button label="Danger" variant="cta" color="danger"></flip-button>
+    <flip-button label="Info" variant="cta" color="info"></flip-button>
+  </div>
+</section>
 
-<flip-button label="Save Changes" variant="success"></flip-button>
-<flip-button label="Delete Account" variant="danger"></flip-button>
-<flip-button label="Update Pending" variant="warning"></flip-button>
+<!-- LIGHT VARIANT -->
+<section>
+  <h2>Variant: Light</h2>
+  <div class="grid">
+    <flip-button label="Primary" variant="light" color="primary"></flip-button>
+    <flip-button label="Secondary" variant="light" color="secondary"></flip-button>
+    <flip-button label="Success" variant="light" color="success"></flip-button>
+    <flip-button label="Warning" variant="light" color="warning"></flip-button>
+    <flip-button label="Danger" variant="light" color="danger"></flip-button>
+    <flip-button label="Info" variant="light" color="info"></flip-button>
+  </div>
+</section>
 
-<flip-button label="Learn More" variant="info"></flip-button>
-<flip-button label="Settings" variant="ghost"></flip-button>
+<!-- GHOST VARIANT -->
+<section>
+  <h2>Variant: Ghost</h2>
+  <div class="grid">
+    <flip-button label="Primary" variant="ghost" color="primary"></flip-button>
+    <flip-button label="Secondary" variant="ghost" color="secondary"></flip-button>
+    <flip-button label="Success" variant="ghost" color="success"></flip-button>
+    <flip-button label="Warning" variant="ghost" color="warning"></flip-button>
+    <flip-button label="Danger" variant="ghost" color="danger"></flip-button>
+    <flip-button label="Info" variant="ghost" color="info"></flip-button>
+  </div>
+</section>
+
+<!-- TEXT VARIANT -->
+<section>
+  <h2>Variant: Text</h2>
+  <div class="grid">
+    <flip-button label="Primary" variant="text" color="primary"></flip-button>
+    <flip-button label="Secondary" variant="text" color="secondary"></flip-button>
+    <flip-button label="Success" variant="text" color="success"></flip-button>
+    <flip-button label="Warning" variant="text" color="warning"></flip-button>
+    <flip-button label="Danger" variant="text" color="danger"></flip-button>
+    <flip-button label="Info" variant="text" color="info"></flip-button>
+  </div>
+</section>
+
+<!-- DISABLED STATE TEST -->
+<section>
+  <h2>Disabled State</h2>
+  <div class="grid">
+    <flip-button label="Disabled CTA" variant="cta" [disabled]="true"></flip-button>
+    <flip-button label="Disabled Light" variant="light" [disabled]="true"></flip-button>
+    <flip-button label="Disabled Ghost" variant="ghost" [disabled]="true"></flip-button>
+    <flip-button label="Disabled Text" variant="text" [disabled]="true"></flip-button>
+  </div>
+</section>
+
 </body>
 </html>
