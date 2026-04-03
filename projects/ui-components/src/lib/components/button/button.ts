@@ -13,6 +13,10 @@ type ButtonVariant = "cta" | "default" | "light" | "ghost" | "text" | "outline";
 type ButtonColor = "primary" | "secondary" | "danger" | "warning" | "success" | "info";
 type ButtonSize = "small" | "medium" | "large";
 
+/**
+ * A versatile button component that supports various visual styles,
+ * sizes, and icon slotting configurations.
+ */
 @Component({
   selector: "flip-button",
   imports: [],
