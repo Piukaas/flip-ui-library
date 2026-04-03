@@ -79,12 +79,20 @@
 }
 
 button {
-  @apply flex items-center justify-center gap-2;
+  @apply flex items-center justify-center;
   @apply font-sans font-semibold flip-transition;
   @apply cursor-pointer select-none flip-radius;
   @apply border border-solid border-transparent;
   @apply disabled:pointer-events-none disabled:opacity-50;
   font-size: inherit;
+
+  slot[name="left-icon"]::slotted(*) {
+    @apply me-1!;
+  }
+
+  slot[name="right-icon"]::slotted(*) {
+    @apply ms-1!;
+  }
 }
 
 :host([data-variant="cta"]) button {

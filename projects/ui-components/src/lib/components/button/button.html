@@ -3,10 +3,10 @@
   [disabled]="disabled()"
   [attr.aria-label]="ariaLabel() || label()"
 >
-  <i part="icon" class="fa-solid fa-flip"></i>
+  <slot name="left-icon"></slot>
   @if (label()) {
     <span part="label">{{ label() }}</span>
   }
   <slot></slot>
-  <i part="icon" class="fa-solid fa-flip"></i>
+  <slot name="right-icon"></slot>
 </button>
