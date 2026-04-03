@@ -16,6 +16,19 @@
   }
 }
 
+:host([data-variant="cta"]) button,
+:host([data-variant="light"]) button {
+  box-shadow: 4px 4px 0 0 var(--flip-btn-shadow);
+
+  &:hover {
+    @apply translate-x-[4px] translate-y-[4px] shadow-none;
+  }
+
+  &:active {
+    @apply translate-y-[6px] translate-x-[4px] shadow-none;
+  }
+}
+
 :host([data-color="secondary"]) {
   --flip-btn-main: theme('colors.secondary.500');
   --flip-btn-border: theme('colors.secondary.600');
@@ -63,12 +76,10 @@
 
 button {
   @apply h-10 px-6 flex items-center justify-center gap-2;
-  @apply text-sm font-semibold transition-visuals duration-md;
-  @apply cursor-pointer select-none rounded-squircle;
+  @apply text-sm font-semibold flip-transition;
+  @apply cursor-pointer select-none flip-radius;
 
   @apply border-2 border-solid border-black;
-  box-shadow: 4px 4px 0 0 var(--flip-btn-shadow);
-  @apply active:translate-x-[4px] active:translate-y-[4px] active:shadow-none;
   @apply disabled:pointer-events-none disabled:opacity-50;
 }
 
@@ -105,13 +116,33 @@ button {
     background-color: var(--flip-btn-soft);
     border-color: var(--flip-btn-soft);
   }
+
+  &:active {
+    transform: translateY(4px);
+    @apply opacity-70;
+  }
 }
 
 :host([data-variant="text"]) button {
-  @apply bg-transparent border-transparent shadow-none px-0 h-fit;
+  @apply relative overflow-hidden bg-transparent border-transparent shadow-none;
+  @apply rounded-none px-0 h-fit;
   color: var(--flip-btn-main);
 
-  &:hover {
-    @apply underline bg-transparent;
+  &::after {
+    content: '';
+    @apply absolute bottom-0 left-0;
+    @apply w-full h-[2px];
+    background-color: var(--flip-btn-main);
+    transform: translateX(-100%);
+    @apply flip-transition;
+  }
+
+  &:hover::after {
+    transform: translateX(0);
+  }
+
+  &:active {
+    transform: translateY(2px);
+    @apply opacity-70;
   }
 }

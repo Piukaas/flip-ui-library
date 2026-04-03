@@ -1,10 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  /* Custom Properties */
+  /* Transitioning */
   --transition-property-visuals: color, background-color, border-color, text-decoration-color, fill, stroke, box-shadow, transform, translate, scale, rotate, filter, opacity;
-
-  /* Durations */
   --transition-duration-none: 0ms;
   --transition-duration-xs: 75ms;
   --transition-duration-sm: 150ms;
@@ -136,7 +134,7 @@
   --color-info-950: oklch(from var(--flip-info-color) var(--scale-l-950) c h);
 }
 
-@utility rounded-squircle {
+@utility flip-radius {
   border-radius: theme('borderRadius.xl');
 
   @supports (corner-shape: squircle) {
@@ -144,3 +142,26 @@
     border-radius: theme('borderRadius.full');
   }
 }
+
+@utility flip-transition {
+  transition: transform var(--transition-duration-lg) cubic-bezier(0.4, 0, 0.2, 1),
+  translate var(--transition-duration-lg) cubic-bezier(0.4, 0, 0.2, 1),
+  scale var(--transition-duration-lg) cubic-bezier(0.4, 0, 0.2, 1),
+  box-shadow var(--transition-duration-lg) cubic-bezier(0.4, 0, 0.2, 1),
+  color var(--transition-duration-md) cubic-bezier(0.4, 0, 0.2, 1),
+  background-color var(--transition-duration-md) cubic-bezier(0.4, 0, 0.2, 1),
+  border-color var(--transition-duration-md) cubic-bezier(0.4, 0, 0.2, 1),
+  opacity var(--transition-duration-md) cubic-bezier(0.4, 0, 0.2, 1);
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: transform var(--transition-duration-lg) cubic-bezier(0.34, 1.56, 0.64, 1),
+    translate var(--transition-duration-lg) cubic-bezier(0.34, 1.56, 0.64, 1),
+    scale var(--transition-duration-lg) cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow var(--transition-duration-lg) cubic-bezier(0.34, 1.56, 0.64, 1),
+    color var(--transition-duration-md) cubic-bezier(0.4, 0, 0.2, 1),
+    background-color var(--transition-duration-md) cubic-bezier(0.4, 0, 0.2, 1),
+    border-color var(--transition-duration-md) cubic-bezier(0.4, 0, 0.2, 1),
+    opacity var(--transition-duration-md) cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
