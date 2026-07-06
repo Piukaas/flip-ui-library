@@ -9,15 +9,12 @@ if (typeof window !== 'undefined') {
 
             const shadow = this.attachShadow({mode: 'open'})
 
-            // ⚡️ BULLETPROOF LITERAL REPLACEMENTS (No fragile regex!)
             const processedStyles = flipStyles
-                // 1. Redirect the root token engine directly to the web component host
                 .replaceAll(':where(:root)', ':host')
-                // 2. Explicitly map your 4 theme presets to the shadow host syntax
-                .replaceAll('[flip-theme="ocean"]', ':host([flip-theme="ocean"])')
-                .replaceAll('[flip-theme="forest"]', ':host([flip-theme="forest"])')
-                .replaceAll('[flip-theme="sunset"]', ':host([flip-theme="sunset"])')
-                .replaceAll('[flip-theme="mono"]', ':host([flip-theme="mono"])')
+                .replaceAll('[flip-theme=ocean]', ':host([flip-theme=ocean])')
+                .replaceAll('[flip-theme=forest]', ':host([flip-theme=forest])')
+                .replaceAll('[flip-theme=sunset]', ':host([flip-theme=sunset])')
+                .replaceAll('[flip-theme=mono]', ':host([flip-theme=mono])')
 
             const styleElement = document.createElement('style')
             styleElement.textContent = processedStyles
