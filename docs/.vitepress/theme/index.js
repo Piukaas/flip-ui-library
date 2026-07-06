@@ -1,5 +1,5 @@
 import DefaultTheme from 'vitepress/theme'
-import flipStyles from '../../../flip.css?inline'
+import flipStyles from '../../public/flip.min.css?inline'
 
 if (typeof window !== 'undefined') {
     customElements.define('flip-preview', class extends HTMLElement {
