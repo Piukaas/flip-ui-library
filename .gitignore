@@ -40,3 +40,10 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# VitePress build outputs
+docs/.vitepress/dist
+docs/.vitepress/cache
+
+# Dynamically generated markdown files
+docs/components/

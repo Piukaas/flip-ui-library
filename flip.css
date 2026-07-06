@@ -1,0 +1,219 @@
+@layer flip-tokens, flip-components, flip-utilities;
+
+@layer flip-tokens {
+  /* ---- theme presets: set only the seed, on <html>.
+     Themes are a root-level choice, not something you scope to
+     a subtree — swap the attribute on <html> to change everything. ---- */
+  html[data-flip-theme="ocean"] {
+    --flip-primary: oklch(55% 0.15 220);
+  }
+
+  html[data-flip-theme="forest"] {
+    --flip-primary: oklch(50% 0.13 145);
+  }
+
+  html[data-flip-theme="sunset"] {
+    --flip-primary: oklch(62% 0.19 40);
+  }
+
+  html[data-flip-theme="mono"] {
+    --flip-primary: oklch(35% 0.01 250);
+  }
+
+  /* ---- everything — seed, ramp math, and override resolution —
+     lives in one place, computed once, at :root. Any override
+     (--flip-user-*) must be set on :root/html to be picked up;
+     it won't recompute if set lower in the tree. ---- */
+  :where(:root) {
+    --flip-primary: oklch(55% 0.18 250);
+
+    /* internal: computed ramp + states, derived from the seed.
+       never hand-edited — exists only as a fallback target */
+    --flip-internal-primary-100: oklch(from var(--flip-primary) 95% calc(c * 0.3) h);
+    --flip-internal-primary-200: oklch(from var(--flip-primary) 88% calc(c * 0.5) h);
+    --flip-internal-primary-300: oklch(from var(--flip-primary) 78% calc(c * 0.7) h);
+    --flip-internal-primary-400: oklch(from var(--flip-primary) 68% calc(c * 0.9) h);
+    --flip-internal-primary-500: var(--flip-primary);
+    --flip-internal-primary-600: oklch(from var(--flip-primary) calc(l * 0.85) c h);
+    --flip-internal-primary-700: oklch(from var(--flip-primary) calc(l * 0.7) c h);
+    --flip-internal-primary-800: oklch(from var(--flip-primary) calc(l * 0.55) calc(c * 0.9) h);
+    --flip-internal-primary-900: oklch(from var(--flip-primary) calc(l * 0.4) calc(c * 0.8) h);
+
+    --flip-internal-primary-hover: oklch(from var(--flip-primary) calc(l - 0.08) c h);
+    --flip-internal-primary-active: oklch(from var(--flip-primary) calc(l - 0.15) c h);
+
+    /* public color tokens: user overrides land in --flip-user-* */
+    --flip-c-primary: var(--flip-user-primary, var(--flip-primary));
+    --flip-c-primary-hover: var(--flip-user-primary-hover, var(--flip-internal-primary-hover));
+    --flip-c-primary-active: var(--flip-user-primary-active, var(--flip-internal-primary-active));
+
+    --flip-c-primary-100: var(--flip-user-primary-100, var(--flip-internal-primary-100));
+    --flip-c-primary-200: var(--flip-user-primary-200, var(--flip-internal-primary-200));
+    --flip-c-primary-300: var(--flip-user-primary-300, var(--flip-internal-primary-300));
+    --flip-c-primary-400: var(--flip-user-primary-400, var(--flip-internal-primary-400));
+    --flip-c-primary-500: var(--flip-user-primary-500, var(--flip-internal-primary-500));
+    --flip-c-primary-600: var(--flip-user-primary-600, var(--flip-internal-primary-600));
+    --flip-c-primary-700: var(--flip-user-primary-700, var(--flip-internal-primary-700));
+    --flip-c-primary-800: var(--flip-user-primary-800, var(--flip-internal-primary-800));
+    --flip-c-primary-900: var(--flip-user-primary-900, var(--flip-internal-primary-900));
+
+    --flip-c-border: #333;
+    --flip-c-on-primary: #fff;
+
+    /* shared structural tokens across all controls */
+    --flip-control-height: 2.75rem;
+    --flip-control-padding-y: 0.5rem;
+    --flip-control-padding-x: 1rem;
+    --flip-control-radius: 8px;
+    --flip-control-border: 1px;
+
+    /* per-component tokens: components only ever reference their
+       own --flip-btn-* / --flip-input-* — no fallback chain inside
+       the component rule itself */
+    --flip-btn-height: var(--flip-control-height);
+    --flip-btn-padding-y: var(--flip-control-padding-y);
+    --flip-btn-padding-x: var(--flip-control-padding-x);
+    --flip-btn-radius: var(--flip-control-radius);
+    --flip-btn-border: var(--flip-c-border);
+    --flip-btn-bg: var(--flip-c-primary);
+    --flip-btn-bg-hover: var(--flip-c-primary-hover);
+    --flip-btn-bg-active: var(--flip-c-primary-active);
+    --flip-btn-color: var(--flip-c-on-primary);
+
+    --flip-input-height: var(--flip-control-height);
+    --flip-input-padding-y: var(--flip-control-padding-y);
+    --flip-input-padding-x: var(--flip-control-padding-x);
+    --flip-input-radius: var(--flip-control-radius);
+    --flip-input-border: var(--flip-c-border);
+    --flip-input-bg: #fff;
+    --flip-input-focus: var(--flip-c-primary-400);
+  }
+}
+
+@layer flip-components {
+  :where(*, *::before, *::after) {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  :where(html) {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  :where(body) {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :where(img, picture, video, canvas, svg) {
+    display: block;
+    max-width: 100%;
+  }
+
+  :where(button, input, select, textarea) {
+    font: inherit;
+    color: inherit;
+  }
+
+  :where(p, h1, h2, h3, h4, h5, h6) {
+    overflow-wrap: break-word;
+  }
+
+  /* shared shape across all form controls */
+  :where(button, input, select) {
+    border-style: solid;
+    border-width: var(--flip-control-border);
+  }
+
+  /* @doc
+  Title: Buttons
+  Description: Core interactive elements that inherit theme tokens and transitions.
+  Preview:
+  <button>Primary Action</button>
+  <button flip-variant="ghost">Ghost Button</button>
+  */
+  :where(button) {
+    height: var(--flip-btn-height);
+    padding: var(--flip-btn-padding-y) var(--flip-btn-padding-x);
+    border-radius: var(--flip-btn-radius);
+    border-color: var(--flip-btn-border);
+    background: var(--flip-btn-bg);
+    color: var(--flip-btn-color);
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+
+  :where(button:hover) {
+    background: var(--flip-btn-bg-hover);
+  }
+
+  :where(button:active) {
+    background: var(--flip-btn-bg-active);
+  }
+
+  /* @doc
+  Title: Inputs
+  Description: Standard text inputs and dropdown selects sharing a cohesive structural shape.
+  Preview:
+  <input placeholder="Type something...">
+  <select><option>Choose one</option></select>
+  */
+  :where(input, select) {
+    height: var(--flip-input-height);
+    padding: var(--flip-input-padding-y) var(--flip-input-padding-x);
+    border-radius: var(--flip-input-radius);
+    border-color: var(--flip-input-border);
+    background: var(--flip-input-bg);
+  }
+
+  :where(input:focus, select:focus) {
+    outline: 2px solid var(--flip-input-focus);
+    outline-offset: 1px;
+  }
+
+  /* ---- opt-out mechanism ---- */
+  [flip-off] {
+    all: revert-layer;
+  }
+
+  [flip-off="all"], [flip-off="all"] * {
+    all: revert-layer;
+  }
+}
+
+@layer flip-utilities {
+  /* utilities always beat components, even at equal specificity,
+     because this layer is declared later */
+  :where([flip-variant="ghost"]) {
+    background: transparent;
+    color: var(--flip-c-primary);
+    border-color: var(--flip-c-primary);
+  }
+}
+
+/* page chrome only, not part of the library */
+body {
+  font-family: system-ui, sans-serif;
+  padding: 2rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+section {
+  margin-bottom: 2.5rem;
+}
+
+h2 {
+  font-size: 15px;
+  color: #666;
+  margin-bottom: 0.75rem;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
