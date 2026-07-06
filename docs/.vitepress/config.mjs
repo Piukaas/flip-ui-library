@@ -23,6 +23,9 @@ export default defineConfig({
     title: "Flip",
     description: "CSS-only component library documentation",
     themeConfig: {
+        head: [
+            ['link', {rel: 'icon', href: '/favicon.ico'}],
+        ],
         nav: [
             {text: 'Home', link: '/'},
             {text: 'Components', link: '/components/buttons'}

@@ -47,4 +47,4 @@ docs/.vitepress/cache
 
 # Dynamically generated markdown files
 docs/components/
-docs/public/
+docs/public/flip.min.css
