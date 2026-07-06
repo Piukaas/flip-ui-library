@@ -3,7 +3,7 @@ const path = require('path');
 
 // Target paths
 const srcPath = path.join(__dirname, '../flip.css');
-const distDir = path.join(__dirname, '../dist');
+const distDir = path.join(__dirname, '../docs/public');
 const distPath = path.join(distDir, 'flip.min.css');
 
 // Ensure the distribution directory exists

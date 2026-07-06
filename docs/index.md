@@ -2,7 +2,7 @@
 layout: home
 
 hero:
-  name: "flip UI"
+  name: "What the Fl*p"
   text: "A lightweight, CSS-only component library"
   tagline: "Powered by modern CSS layers, OKLCH colors, and HTML attributes."
   actions:

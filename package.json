@@ -4,8 +4,8 @@
   "scripts": {
     "docs:generate": "node scripts/generate-docs.js",
     "css:minify": "node scripts/minify.js",
-    "docs:dev": "npm run docs:generate && vitepress dev docs",
-    "docs:build": "npm run docs:generate && vitepress build docs && npm run css:minify",
+    "docs:dev": "npm run docs:generate && npm run css:minify && vitepress dev docs",
+    "docs:build": "npm run docs:generate && npm run css:minify && vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {

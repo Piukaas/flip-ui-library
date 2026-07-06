@@ -20,7 +20,7 @@ function getSidebarComponents() {
 }
 
 export default defineConfig({
-    title: "flip UI",
+    title: "Flip",
     description: "CSS-only component library documentation",
     themeConfig: {
         nav: [
