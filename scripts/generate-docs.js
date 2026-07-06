@@ -25,7 +25,7 @@ while ((match = docRegex.exec(cssContent)) !== null) {
     // Extract fields using simple regex parsing
     const titleMatch = block.match(/Title:\s*(.*)/);
     const descMatch = block.match(/Description:\s*(.*)/);
-    const previewMatch = block.match(/Preview:\s*([\s\S]*?)$/);
+    const previewMatch = block.match(/Preview:\s*\[([\s\S]*?)]/);
 
     if (titleMatch) {
         const title = titleMatch[1].trim();

@@ -11,10 +11,10 @@ if (typeof window !== 'undefined') {
 
             const processedStyles = flipStyles
                 .replaceAll(':where(:root)', ':host')
-                .replaceAll('[flip-theme=ocean]', ':host([flip-theme=ocean])')
-                .replaceAll('[flip-theme=forest]', ':host([flip-theme=forest])')
-                .replaceAll('[flip-theme=sunset]', ':host([flip-theme=sunset])')
-                .replaceAll('[flip-theme=mono]', ':host([flip-theme=mono])')
+                .replaceAll(':root[flip-theme="ocean"]', ':host-context([flip-theme="ocean"])')
+                .replaceAll(':root[flip-theme="forest"]', ':host-context([flip-theme="forest"])')
+                .replaceAll(':root[flip-theme="sunset"]', ':host-context([flip-theme="sunset"])')
+                .replaceAll(':root[flip-theme="mono"]', ':host-context([flip-theme="mono"])')
 
             const styleElement = document.createElement('style')
             styleElement.textContent = processedStyles

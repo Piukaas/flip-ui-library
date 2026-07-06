@@ -4,19 +4,19 @@
     /* ---- theme presets: set only the seed, on <html>.
        Themes are a root-level choice, not something you scope to
        a subtree — swap the attribute on <html> to change everything. ---- */
-    [flip-theme=ocean] {
+    :root[flip-theme="ocean"] {
         --flip-primary: oklch(55% 0.15 220);
     }
 
-    [flip-theme=forest] {
+    :root[flip-theme="forest"] {
         --flip-primary: oklch(50% 0.13 145);
     }
 
-    [flip-theme=sunset] {
+    :root[flip-theme="sunset"] {
         --flip-primary: oklch(62% 0.19 40);
     }
 
-    [flip-theme=mono] {
+    :root[flip-theme="mono"] {
         --flip-primary: oklch(35% 0.01 250);
     }
 
@@ -130,9 +130,10 @@
     /* @doc
     Title: Buttons
     Description: Core interactive elements that inherit theme tokens and transitions.
-    Preview:
+    Preview: [
     <button>Primary Action</button>
     <button flip-variant="ghost">Ghost Button</button>
+    ]
     */
     :where(button) {
         height: var(--flip-btn-height);
@@ -156,9 +157,10 @@
     /* @doc
     Title: Inputs
     Description: Standard text inputs and dropdown selects sharing a cohesive structural shape.
-    Preview:
+    Preview: [
     <input placeholder="Type something...">
     <select><option>Choose one</option></select>
+    ]
     */
     :where(input, select) {
         height: var(--flip-input-height);
