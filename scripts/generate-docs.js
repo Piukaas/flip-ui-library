@@ -34,7 +34,6 @@ while ((match = docRegex.exec(cssContent)) !== null) {
         const slug = title.toLowerCase().replace(/\s+/g, '-');
 
         // Generate the Markdown template
-        // Note: 'vp-raw' prevents VitePress from applying its own CSS resets to your components!
         const mdContent = `---
 title: ${title}
 editLink: false
@@ -46,9 +45,9 @@ ${desc}
 
 ## Interactive Preview
 
-<div class="vp-raw" style="padding: 1.5rem; border: 1px solid var(--vp-c-divider); border-radius: 8px; margin-bottom: 1rem; display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; background: var(--vp-c-bg-soft);">
+<flip-preview flip-theme="forest">
   ${preview}
-</div>
+</flip-preview>
 
 \`\`\`html
 ${preview}
