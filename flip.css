@@ -4,18 +4,22 @@
     /* ---- theme presets: set only the seed, on <html>.
        Themes are a root-level choice, not something you scope to
        a subtree — swap the attribute on <html> to change everything. ---- */
+    :host-context([flip-theme="ocean"]),
     :root[flip-theme="ocean"] {
         --flip-primary: oklch(55% 0.15 220);
     }
 
+    :host-context([flip-theme="forest"]),
     :root[flip-theme="forest"] {
         --flip-primary: oklch(50% 0.13 145);
     }
 
+    :host-context([flip-theme="sunset"]),
     :root[flip-theme="sunset"] {
         --flip-primary: oklch(62% 0.19 40);
     }
 
+    :host-context([flip-theme="mono"]),
     :root[flip-theme="mono"] {
         --flip-primary: oklch(35% 0.01 250);
     }
