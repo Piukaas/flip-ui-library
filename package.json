@@ -10,5 +10,15 @@
   },
   "devDependencies": {
     "vitepress": "^1.0.0"
+  },
+  "supportedArchitectures": {
+    "os": [
+      "current",
+      "linux"
+    ],
+    "cpu": [
+      "current",
+      "x64"
+    ]
   }
 }
