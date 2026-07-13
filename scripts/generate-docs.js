@@ -45,7 +45,7 @@ ${desc}
 
 ## Interactive Preview
 
-<flip-preview flip-theme="forest">
+<flip-preview>
   ${preview}
 </flip-preview>
 

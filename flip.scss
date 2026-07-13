@@ -1,0 +1,205 @@
+@layer flip-tokens, flip-components, flip-utilities;
+
+@layer flip-tokens {
+  @function flip-scale($color-var, $grade) {
+    @if $grade == 100 {
+      @return oklch(from #{$color-var} 0.96 calc(c * 0.2) h);
+    }
+    @if $grade == 200 {
+      @return oklch(from #{$color-var} 0.88 calc(c * 0.4) h);
+    }
+    @if $grade == 300 {
+      @return oklch(from #{$color-var} 0.80 calc(c * 0.6) h);
+    }
+    @if $grade == 400 {
+      @return oklch(from #{$color-var} 0.70 calc(c * 0.8) h);
+    }
+    @if $grade == 500 {
+      @return #{$color-var};
+    }
+    @if $grade == 600 {
+      @return oklch(from #{$color-var} calc(l * 0.85) c h);
+    }
+    @if $grade == 700 {
+      @return oklch(from #{$color-var} calc(l * 0.72) c h);
+    }
+    @if $grade == 800 {
+      @return oklch(from #{$color-var} calc(l * 0.58) calc(c * 0.9) h);
+    }
+    @if $grade == 900 {
+      @return oklch(from #{$color-var} calc(l * 0.42) calc(c * 0.8) h);
+    }
+    @return #{$color-var};
+  }
+
+  :where(:root) {
+    --flip-c-primary: oklch(0.62 0.23 28);
+    --flip-c-secondary: oklch(0.64 0.06 165);
+    --flip-c-tertiary: oklch(0.28 0.03 250);
+    --flip-c-danger: oklch(0.60 0.22 15);
+    --flip-c-warning: oklch(0.75 0.18 75);
+    --flip-c-information: oklch(0.65 0.19 210);
+    --flip-c-success: oklch(0.64 0.17 145);
+
+    @each $v in primary, secondary, tertiary, danger, warning, information, success {
+      @each $grade in 100, 200, 300, 400, 500, 600, 700, 800, 900 {
+        --flip-c-#{$v}-#{$grade}: #{flip-scale(var(--flip-c-#{$v}), $grade)};
+      }
+
+      --flip-c-on-#{$v}: contrast-color(var(--flip-c-#{$v}));
+    }
+
+    --flip-c-border: rgba(255, 255, 255, 0.1);
+    --flip-c-on-primary: contrast-color(var(--flip-c-primary));
+
+    --flip-control-radius: 100vw;
+    --flip-control-border: 1px solid var(--flip-c-border);
+
+    // Core control defaults (md)
+    --flip-control-height-md: 2.75rem; // 44px
+    --flip-control-padding-y-md: 0.5rem;
+    --flip-control-padding-x-md: 1.25rem;
+    --flip-control-font-size-md: 0.9375rem; // ~15px
+
+
+    // XS Sizing Tokens
+    --flip-control-height-xs: 2rem; // 32px
+    --flip-control-padding-y-xs: 0.25rem;
+    --flip-control-padding-x-xs: 0.75rem;
+    --flip-control-font-size-xs: 0.8125rem; // ~13px
+
+    // SM Sizing Tokens
+    --flip-control-height-sm: 2.375rem; // 38px
+    --flip-control-padding-y-sm: 0.375rem;
+    --flip-control-padding-x-sm: 1rem;
+    --flip-control-font-size-sm: 0.875rem; // ~14px
+
+    // LG Sizing Tokens
+    --flip-control-height-lg: 3.125rem; // 50px
+    --flip-control-padding-y-lg: 0.625rem;
+    --flip-control-padding-x-lg: 1.5rem;
+    --flip-control-font-size-lg: 1rem; // ~16px
+
+    // XL Sizing Tokens
+    --flip-control-height-xl: 3.5rem; // 56px
+    --flip-control-padding-y-xl: 0.75rem;
+    --flip-control-padding-x-xl: 1.75rem;
+    --flip-control-font-size-xl: 1.125rem; // ~18px
+
+    // Per-component button tokens
+    --flip-bg: var(--flip-c-primary-500);
+    --flip-bg-hover: var(--flip-c-primary-600);
+    --flip-bg-active: var(--flip-c-primary-700);
+    --flip-color: var(--flip-c-on-primary, #fff);
+  }
+}
+
+@layer flip-components {
+  @mixin flip-control {
+    --flip-height: var(--flip-control-height-md);
+    --flip-padding-y: var(--flip-control-padding-y-md);
+    --flip-padding-x: var(--flip-control-padding-x-md);
+    --flip-font-size: var(--flip-control-font-size-md);
+
+    height: var(--flip-height);
+    padding: var(--flip-padding-y) var(--flip-padding-x);
+    font-size: var(--flip-font-size);
+    border-radius: var(--flip-control-radius);
+    border: var(--flip-control-border);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    corner-shape: squircle;
+
+    @each $size in xs, sm, lg, xl {
+      &:where([flip-size="#{$size}"]) {
+        --flip-height: var(--flip-control-height-#{$size});
+        --flip-padding-y: var(--flip-control-padding-y-#{$size});
+        --flip-padding-x: var(--flip-control-padding-x-#{$size});
+        --flip-font-size: var(--flip-control-font-size-#{$size});
+      }
+    }
+  }
+
+  @mixin flip-variant {
+    transition: background-color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+    color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+    --flip-bg: var(--flip-c-primary-500);
+    --flip-bg-hover: var(--flip-c-primary-600);
+    --flip-bg-active: var(--flip-c-primary-700);
+    --flip-color: var(--flip-c-on-primary);
+
+    background: var(--flip-bg);
+    color: var(--flip-color);
+
+    @each $variant in primary, secondary, tertiary, danger, warning, information, success {
+      &:where([flip-variant="#{$variant}"]) {
+        --flip-bg: var(--flip-c-#{$variant}-500);
+        --flip-bg-hover: var(--flip-c-#{$variant}-600);
+        --flip-bg-active: var(--flip-c-#{$variant}-700);
+        --flip-color: var(--flip-c-on-#{$variant});
+      }
+    }
+  }
+
+  @mixin flip-interactable {
+    cursor: pointer;
+    user-select: none;
+    touch-action: manipulation;
+
+    &:where(:hover:not(:disabled, [aria-disabled="true"])) {
+      background: var(--flip-bg-hover, var(--flip-c-primary-600));
+    }
+
+    &:where(:active:not(:disabled, [aria-disabled="true"])) {
+      background: var(--flip-bg-active, var(--flip-c-primary-700));
+    }
+
+    &:where(:disabled, [aria-disabled="true"]) {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  }
+
+  /* @doc
+    Title: Buttons
+    Description: Core interactive elements that inherit theme tokens and transitions across 5 size tiers.
+    Preview: [
+      <button flip-size="xs">Extra Small</button>
+      <button flip-size="sm">Small</button>
+      <button>Default Medium</button>
+      <button flip-size="lg">Large</button>
+      <button flip-size="xl">Extra Large</button>
+      <button flip-variant="primary">Primary Coral</button>
+      <button flip-variant="secondary">Secondary Blue</button>
+      <button flip-variant="tertiary">Tertiary Purple</button>
+      <button flip-variant="success">Success Emerald</button>
+      <button flip-variant="danger">Danger Crimson</button>
+      <button flip-variant="warning">Warning Amber</button>
+      <button flip-variant="information">Info Sky</button>
+      <button flip-size="sm" flip-variant="success">Small Success</button>
+      <button flip-size="lg" flip-variant="danger">Large Danger</button>
+      <button disabled>Disabled State</button>
+      <button aria-disabled="true" flip-variant="secondary">Aria Disabled</button>
+    ]
+   */
+  :where(button) {
+    @include flip-control;
+    @include flip-variant;
+    @include flip-interactable;
+  }
+
+  /* ---- opt-out mechanism ---- */
+  [flip-off] {
+    all: revert-layer;
+  }
+
+  [flip-off="all"], [flip-off="all"] * {
+    all: revert-layer;
+  }
+}
