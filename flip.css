@@ -135,6 +135,8 @@
       <button aria-disabled="true" flip-variant="secondary">Aria Disabled</button>
       <button flip-tooltip="Tooltip">Hover for Tooltip</button>
       <button flip-tooltip="Tooltip on the right" flip-position="right">Hover for Right Tooltip</button>
+      <button popovertarget="rich-tooltip-1">Click for Rich Tooltip</button>
+      <div id="rich-tooltip-1" popover flip-tooltip><h1>Pro Feature</h1></div>
     ]
    */
   :where(button) {
@@ -251,7 +253,7 @@
     all: revert-layer;
   }
   /* ---- tooltip mechanism ---- */
-  *[flip-tooltip]:hover::before, *[flip-tooltip]:focus::before, *[flip-tooltip]:focus-visible::before {
+  *[flip-tooltip]:not([popover]):hover::before, *[flip-tooltip]:not([popover]):focus::before, *[flip-tooltip]:not([popover]):focus-visible::before {
     border: var(--flip-control-border);
     border-radius: var(--flip-control-radius);
     corner-shape: squircle;
@@ -261,18 +263,47 @@
     margin: 4px;
     position-try-fallbacks: flip-block, --flip-left, --flip-left flip-inline;
     font-size: 1rem;
-    content: attr(flip-tooltip);
     background-color: var(--flip-c-tertiary-900);
     color: var(--flip-c-on-tertiary);
     padding: var(--flip-control-padding-y-sm) var(--flip-control-padding-x-sm);
     opacity: 1;
-    pointer-events: none;
     transition: opacity 0.2s ease-in;
   }
   @starting-style {
-    *[flip-tooltip]:hover::before, *[flip-tooltip]:focus::before, *[flip-tooltip]:focus-visible::before {
+    *[flip-tooltip]:not([popover]):hover::before, *[flip-tooltip]:not([popover]):focus::before, *[flip-tooltip]:not([popover]):focus-visible::before {
       opacity: 0;
     }
+  }
+  *[flip-tooltip]:not([popover]):hover::before, *[flip-tooltip]:not([popover]):focus::before, *[flip-tooltip]:not([popover]):focus-visible::before {
+    content: attr(flip-tooltip);
+  }
+  [popover][flip-tooltip] {
+    border: var(--flip-control-border);
+    border-radius: var(--flip-control-radius);
+    corner-shape: squircle;
+    position: absolute;
+    position-anchor: auto;
+    position-area: attr(flip-position type(<custom-ident>), top) center;
+    margin: 4px;
+    position-try-fallbacks: flip-block, --flip-left, --flip-left flip-inline;
+    font-size: 1rem;
+    background-color: var(--flip-c-tertiary-900);
+    color: var(--flip-c-on-tertiary);
+    padding: var(--flip-control-padding-y-sm) var(--flip-control-padding-x-sm);
+    opacity: 1;
+    transition: opacity 0.2s ease-in;
+  }
+  @starting-style {
+    [popover][flip-tooltip] {
+      opacity: 0;
+    }
+  }
+  [popover][flip-tooltip] {
+    border: none;
+    inset: auto;
+  }
+  [popover][flip-tooltip]:not(:popover-open) {
+    opacity: 0;
   }
 }
 

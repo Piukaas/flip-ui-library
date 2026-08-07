@@ -209,6 +209,8 @@
       <button aria-disabled="true" flip-variant="secondary">Aria Disabled</button>
       <button flip-tooltip="Tooltip">Hover for Tooltip</button>
       <button flip-tooltip="Tooltip on the right" flip-position="right">Hover for Right Tooltip</button>
+      <button popovertarget="rich-tooltip-1">Click for Rich Tooltip</button>
+      <div id="rich-tooltip-1" popover flip-tooltip><h1>Pro Feature</h1></div>
     ]
    */
   :where(button) {
@@ -227,26 +229,39 @@
   }
 
   /* ---- tooltip mechanism ---- */
-  *[flip-tooltip] {
+  @mixin flip-tooltip-styles {
+    @include flip-border;
+    @include flip-anchor;
+    @include flip-text;
+    background-color: var(--flip-c-tertiary-900);
+    color: var(--flip-c-on-tertiary);
+    padding: var(--flip-control-padding-y-sm) var(--flip-control-padding-x-sm);
+    opacity: 1;
+    transition: opacity 0.2s ease-in;
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
+
+  *[flip-tooltip]:not([popover]) {
     &:hover,
     &:focus,
     &:focus-visible {
       &::before {
-        @include flip-border;
-        @include flip-anchor;
-        @include flip-text;
+        @include flip-tooltip-styles;
         content: attr(flip-tooltip);
-        background-color: var(--flip-c-tertiary-900);
-        color: var(--flip-c-on-tertiary);
-        padding: var(--flip-control-padding-y-sm) var(--flip-control-padding-x-sm);
-        opacity: 1;
-        pointer-events: none;
-        transition: opacity 0.2s ease-in;
-
-        @starting-style {
-          opacity: 0;
-        }
       }
+    }
+  }
+
+  [popover][flip-tooltip] {
+    @include flip-tooltip-styles;
+    border: none;
+    inset: auto;
+
+    &:not(:popover-open) {
+      opacity: 0;
     }
   }
 }
