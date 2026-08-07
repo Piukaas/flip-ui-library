@@ -1,6 +1,9 @@
 @charset "UTF-8";
 @layer flip-tokens, flip-components, flip-utilities;
 @layer flip-tokens {
+  * {
+    box-sizing: border-box;
+  }
   :root {
     --flip-c-primary: oklch(0.62 0.23 28);
     --flip-c-secondary: oklch(0.64 0.06 165);
