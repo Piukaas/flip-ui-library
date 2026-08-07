@@ -61,6 +61,11 @@
     --flip-control-padding-x-md: 1.25rem;
     --flip-control-font-size-md: 0.9375rem; // ~15px
 
+    // XXS Sizing Tokens
+    --flip-control-height-xxs: 1.5rem; // 24px
+    --flip-control-padding-y-xxs: 0.125rem;
+    --flip-control-padding-x-xxs: 0.5rem;
+    --flip-control-font-size-xxs: 0.75rem; // ~12px
 
     // XS Sizing Tokens
     --flip-control-height-xs: 2rem; // 32px
@@ -85,6 +90,12 @@
     --flip-control-padding-y-xl: 0.75rem;
     --flip-control-padding-x-xl: 1.75rem;
     --flip-control-font-size-xl: 1.125rem; // ~18px
+
+    // XXL Sizing Tokens
+    --flip-control-height-xxl: 4rem; // 64px
+    --flip-control-padding-y-xxl: 1rem;
+    --flip-control-padding-x-xxl: 2rem;
+    --flip-control-font-size-xxl: 1.25rem; // ~20px
 
     // Per-component button tokens
     --flip-bg: var(--flip-c-primary-500);
@@ -139,7 +150,7 @@
       padding-inline: var(--flip-padding-y);
     }
 
-    @each $size in xs, sm, lg, xl {
+    @each $size in xxs, xs, sm, lg, xl, xxl {
       &[flip-size="#{$size}"] {
         --flip-height: var(--flip-control-height-#{$size});
         --flip-padding-y: var(--flip-control-padding-y-#{$size});
@@ -203,11 +214,13 @@
     Title: Buttons
     Description: Core interactive elements that inherit theme tokens and transitions across 5 size tiers.
     Preview: [
+      <button flip-size="xxs">Extra Extra Small</button>
       <button flip-size="xs">Extra Small</button>
       <button flip-size="sm">Small</button>
       <button>Default Medium</button>
       <button flip-size="lg">Large</button>
       <button flip-size="xl">Extra Large</button>
+      <button flip-size="xxl">Extra Extra Large</button>
       <button flip-variant="primary">Primary Coral</button>
       <button flip-variant="secondary">Secondary Blue</button>
       <button flip-variant="tertiary">Tertiary Purple</button>
@@ -224,10 +237,10 @@
       <button popovertarget="rich-tooltip-1">Click for Rich Tooltip</button>
       <div id="rich-tooltip-1" popover flip-tooltip><button>Button-ception</button></div>
       <div flip-carousel>
-        <div>Slide 1</div>
-        <div>Slide 2</div>
-        <div>Slide 3</div>
-        <div>Slide 4</div>
+        <article>Slide 1</article>
+        <article>Slide 2</article>
+        <article>Slide 3</article>
+        <article>Slide 4</article>
       </div>
     ]
    */
@@ -235,6 +248,17 @@
     @include flip-control;
     @include flip-variant;
     @include flip-interactable;
+  }
+
+  article {
+    @include flip-border;
+    @include flip-text;
+    max-width: 65ch;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: var(--flip-c-tertiary-900);
+    color: var(--flip-c-on-tertiary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   }
 
   /* ---- opt-out mechanism ---- */
@@ -283,9 +307,7 @@
   [flip-carousel] {
     width: 100%;
     overflow-x: auto;
-    margin: 3rem auto;
     display: flex;
-    gap: 1rem;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
     scroll-marker-group: after;
@@ -324,23 +346,16 @@
 
     & > * {
       scroll-snap-align: start;
-      flex: 0 0 20rem;
-      aspect-ratio: 5 / 3;
-      background-color: var(--flip-c-tertiary-900);
-      padding: 1rem;
-      @include flip-border;
-      text-align: center;
       align-content: center;
 
-      @media (max-width: 500px) {
-        flex: 0 0 100%;
-      }
-
       &::scroll-marker {
-        @include flip-control(round, sm);
+        @include flip-control(round, xxs);
         @include flip-variant(secondary);
         @include flip-interactable;
         content: '';
+        padding: 0;
+        height: var(--flip-control-height-xxs);
+        width: var(--flip-control-height-xxs);
 
         &:target-current {
           @include flip-variant(primary);

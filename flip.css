@@ -87,6 +87,10 @@
     --flip-control-padding-y-md: 0.5rem;
     --flip-control-padding-x-md: 1.25rem;
     --flip-control-font-size-md: 0.9375rem;
+    --flip-control-height-xxs: 1.5rem;
+    --flip-control-padding-y-xxs: 0.125rem;
+    --flip-control-padding-x-xxs: 0.5rem;
+    --flip-control-font-size-xxs: 0.75rem;
     --flip-control-height-xs: 2rem;
     --flip-control-padding-y-xs: 0.25rem;
     --flip-control-padding-x-xs: 0.75rem;
@@ -103,6 +107,10 @@
     --flip-control-padding-y-xl: 0.75rem;
     --flip-control-padding-x-xl: 1.75rem;
     --flip-control-font-size-xl: 1.125rem;
+    --flip-control-height-xxl: 4rem;
+    --flip-control-padding-y-xxl: 1rem;
+    --flip-control-padding-x-xxl: 2rem;
+    --flip-control-font-size-xxl: 1.25rem;
     --flip-bg: var(--flip-c-primary-500);
     --flip-bg-hover: var(--flip-c-primary-600);
     --flip-bg-active: var(--flip-c-primary-700);
@@ -114,11 +122,13 @@
     Title: Buttons
     Description: Core interactive elements that inherit theme tokens and transitions across 5 size tiers.
     Preview: [
+      <button flip-size="xxs">Extra Extra Small</button>
       <button flip-size="xs">Extra Small</button>
       <button flip-size="sm">Small</button>
       <button>Default Medium</button>
       <button flip-size="lg">Large</button>
       <button flip-size="xl">Extra Large</button>
+      <button flip-size="xxl">Extra Extra Large</button>
       <button flip-variant="primary">Primary Coral</button>
       <button flip-variant="secondary">Secondary Blue</button>
       <button flip-variant="tertiary">Tertiary Purple</button>
@@ -135,10 +145,10 @@
       <button popovertarget="rich-tooltip-1">Click for Rich Tooltip</button>
       <div id="rich-tooltip-1" popover flip-tooltip><button>Button-ception</button></div>
       <div flip-carousel>
-        <div>Slide 1</div>
-        <div>Slide 2</div>
-        <div>Slide 3</div>
-        <div>Slide 4</div>
+        <article>Slide 1</article>
+        <article>Slide 2</article>
+        <article>Slide 3</article>
+        <article>Slide 4</article>
       </div>
     ]
    */
@@ -157,6 +167,12 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+  }
+  button[flip-size=xxs], [role=button][flip-size=xxs] {
+    --flip-height: var(--flip-control-height-xxs);
+    --flip-padding-y: var(--flip-control-padding-y-xxs);
+    --flip-padding-x: var(--flip-control-padding-x-xxs);
+    --flip-font-size: var(--flip-control-font-size-xxs);
   }
   button[flip-size=xs], [role=button][flip-size=xs] {
     --flip-height: var(--flip-control-height-xs);
@@ -181,6 +197,12 @@
     --flip-padding-y: var(--flip-control-padding-y-xl);
     --flip-padding-x: var(--flip-control-padding-x-xl);
     --flip-font-size: var(--flip-control-font-size-xl);
+  }
+  button[flip-size=xxl], [role=button][flip-size=xxl] {
+    --flip-height: var(--flip-control-height-xxl);
+    --flip-padding-y: var(--flip-control-padding-y-xxl);
+    --flip-padding-x: var(--flip-control-padding-x-xxl);
+    --flip-font-size: var(--flip-control-font-size-xxl);
   }
   button[flip-shape=round], [role=button][flip-shape=round] {
     --flip-control-radius: 100vw;
@@ -254,6 +276,18 @@
     cursor: not-allowed;
     opacity: 0.6;
   }
+  article {
+    corner-shape: squircle;
+    border: var(--flip-control-border);
+    border-radius: var(--flip-control-radius);
+    font-size: 1rem;
+    max-width: 65ch;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: var(--flip-c-tertiary-900);
+    color: var(--flip-c-on-tertiary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
   /* ---- opt-out mechanism ---- */
   [flip-off] {
     all: revert-layer;
@@ -315,9 +349,7 @@
   [flip-carousel] {
     width: 100%;
     overflow-x: auto;
-    margin: 3rem auto;
     display: flex;
-    gap: 1rem;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
     scroll-marker-group: after;
@@ -359,6 +391,12 @@
     aspect-ratio: 1;
     padding-inline: var(--flip-padding-y);
   }
+  [flip-carousel]::scroll-button(left)[flip-size=xxs], [flip-carousel]::scroll-button(right)[flip-size=xxs] {
+    --flip-height: var(--flip-control-height-xxs);
+    --flip-padding-y: var(--flip-control-padding-y-xxs);
+    --flip-padding-x: var(--flip-control-padding-x-xxs);
+    --flip-font-size: var(--flip-control-font-size-xxs);
+  }
   [flip-carousel]::scroll-button(left)[flip-size=xs], [flip-carousel]::scroll-button(right)[flip-size=xs] {
     --flip-height: var(--flip-control-height-xs);
     --flip-padding-y: var(--flip-control-padding-y-xs);
@@ -382,6 +420,12 @@
     --flip-padding-y: var(--flip-control-padding-y-xl);
     --flip-padding-x: var(--flip-control-padding-x-xl);
     --flip-font-size: var(--flip-control-font-size-xl);
+  }
+  [flip-carousel]::scroll-button(left)[flip-size=xxl], [flip-carousel]::scroll-button(right)[flip-size=xxl] {
+    --flip-height: var(--flip-control-height-xxl);
+    --flip-padding-y: var(--flip-control-padding-y-xxl);
+    --flip-padding-x: var(--flip-control-padding-x-xxl);
+    --flip-font-size: var(--flip-control-font-size-xxl);
   }
   [flip-carousel]::scroll-button(left)[flip-shape=round], [flip-carousel]::scroll-button(right)[flip-shape=round] {
     --flip-control-radius: 100vw;
@@ -461,29 +505,16 @@
   }
   [flip-carousel] > * {
     scroll-snap-align: start;
-    flex: 0 0 20rem;
-    aspect-ratio: 5/3;
-    background-color: var(--flip-c-tertiary-900);
-    padding: 1rem;
-    corner-shape: squircle;
-    border: var(--flip-control-border);
-    border-radius: var(--flip-control-radius);
-    text-align: center;
     align-content: center;
-  }
-  @media (max-width: 500px) {
-    [flip-carousel] > * {
-      flex: 0 0 100%;
-    }
   }
   [flip-carousel] > *::scroll-marker {
     --flip-control-radius: 100vw;
     border: var(--flip-control-border);
     border-radius: var(--flip-control-radius);
-    --flip-height: var(--flip-control-height-sm);
-    --flip-padding-y: var(--flip-control-padding-y-sm);
-    --flip-padding-x: var(--flip-control-padding-x-sm);
-    --flip-font-size: var(--flip-control-font-size-sm);
+    --flip-height: var(--flip-control-height-xxs);
+    --flip-padding-y: var(--flip-control-padding-y-xxs);
+    --flip-padding-x: var(--flip-control-padding-x-xxs);
+    --flip-font-size: var(--flip-control-font-size-xxs);
     height: var(--flip-height);
     padding: var(--flip-padding-y) var(--flip-padding-x);
     font-size: var(--flip-font-size);
@@ -493,6 +524,12 @@
     gap: 0.5rem;
     aspect-ratio: 1;
     padding-inline: var(--flip-padding-y);
+  }
+  [flip-carousel] > *::scroll-marker[flip-size=xxs] {
+    --flip-height: var(--flip-control-height-xxs);
+    --flip-padding-y: var(--flip-control-padding-y-xxs);
+    --flip-padding-x: var(--flip-control-padding-x-xxs);
+    --flip-font-size: var(--flip-control-font-size-xxs);
   }
   [flip-carousel] > *::scroll-marker[flip-size=xs] {
     --flip-height: var(--flip-control-height-xs);
@@ -517,6 +554,12 @@
     --flip-padding-y: var(--flip-control-padding-y-xl);
     --flip-padding-x: var(--flip-control-padding-x-xl);
     --flip-font-size: var(--flip-control-font-size-xl);
+  }
+  [flip-carousel] > *::scroll-marker[flip-size=xxl] {
+    --flip-height: var(--flip-control-height-xxl);
+    --flip-padding-y: var(--flip-control-padding-y-xxl);
+    --flip-padding-x: var(--flip-control-padding-x-xxl);
+    --flip-font-size: var(--flip-control-font-size-xxl);
   }
   [flip-carousel] > *::scroll-marker[flip-shape=round] {
     --flip-control-radius: 100vw;
@@ -592,6 +635,9 @@
   }
   [flip-carousel] > *::scroll-marker {
     content: "";
+    padding: 0;
+    height: var(--flip-control-height-xxs);
+    width: var(--flip-control-height-xxs);
   }
   [flip-carousel] > *::scroll-marker:target-current {
     transition: background-color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
