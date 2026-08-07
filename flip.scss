@@ -237,10 +237,10 @@
       <button popovertarget="rich-tooltip-1">Click for Rich Tooltip</button>
       <div id="rich-tooltip-1" popover flip-tooltip><button>Button-ception</button></div>
       <div flip-carousel>
-        <article>Slide 1</article>
-        <article>Slide 2</article>
-        <article>Slide 3</article>
-        <article>Slide 4</article>
+        <article style="flex: 0 0 100%">Slide 1</article>
+        <article style="flex: 0 0 100%">Slide 2</article>
+        <article style="flex: 0 0 100%">Slide 3</article>
+        <article style="flex: 0 0 100%">Slide 4</article>
       </div>
     ]
    */
@@ -251,14 +251,13 @@
   }
 
   article {
-    @include flip-border;
     @include flip-text;
-    max-width: 65ch;
-    margin: 3rem auto;
+    @include flip-border;
+    aspect-ratio: 3/2;
     padding: 2rem;
     background-color: var(--flip-c-tertiary-900);
     color: var(--flip-c-on-tertiary);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
   }
 
   /* ---- opt-out mechanism ---- */
