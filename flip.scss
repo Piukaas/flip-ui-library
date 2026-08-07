@@ -210,7 +210,7 @@
       <button flip-tooltip="Tooltip">Hover for Tooltip</button>
       <button flip-tooltip="Tooltip on the right" flip-position="right">Hover for Right Tooltip</button>
       <button popovertarget="rich-tooltip-1">Click for Rich Tooltip</button>
-      <div id="rich-tooltip-1" popover flip-tooltip><h1>Pro Feature</h1></div>
+      <div id="rich-tooltip-1" popover flip-tooltip><button>Button-ception</button></div>
     ]
    */
   :where(button) {
@@ -244,7 +244,7 @@
     }
   }
 
-  *[flip-tooltip]:not([popover]) {
+  [flip-tooltip]:not([popover]) {
     &:hover,
     &:focus,
     &:focus-visible {
@@ -259,9 +259,5 @@
     @include flip-tooltip-styles;
     border: none;
     inset: auto;
-
-    &:not(:popover-open) {
-      opacity: 0;
-    }
   }
 }

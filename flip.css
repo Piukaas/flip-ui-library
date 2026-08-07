@@ -136,7 +136,7 @@
       <button flip-tooltip="Tooltip">Hover for Tooltip</button>
       <button flip-tooltip="Tooltip on the right" flip-position="right">Hover for Right Tooltip</button>
       <button popovertarget="rich-tooltip-1">Click for Rich Tooltip</button>
-      <div id="rich-tooltip-1" popover flip-tooltip><h1>Pro Feature</h1></div>
+      <div id="rich-tooltip-1" popover flip-tooltip><button>Button-ception</button></div>
     ]
    */
   :where(button) {
@@ -253,7 +253,7 @@
     all: revert-layer;
   }
   /* ---- tooltip mechanism ---- */
-  *[flip-tooltip]:not([popover]):hover::before, *[flip-tooltip]:not([popover]):focus::before, *[flip-tooltip]:not([popover]):focus-visible::before {
+  [flip-tooltip]:not([popover]):hover::before, [flip-tooltip]:not([popover]):focus::before, [flip-tooltip]:not([popover]):focus-visible::before {
     border: var(--flip-control-border);
     border-radius: var(--flip-control-radius);
     corner-shape: squircle;
@@ -270,11 +270,11 @@
     transition: opacity 0.2s ease-in;
   }
   @starting-style {
-    *[flip-tooltip]:not([popover]):hover::before, *[flip-tooltip]:not([popover]):focus::before, *[flip-tooltip]:not([popover]):focus-visible::before {
+    [flip-tooltip]:not([popover]):hover::before, [flip-tooltip]:not([popover]):focus::before, [flip-tooltip]:not([popover]):focus-visible::before {
       opacity: 0;
     }
   }
-  *[flip-tooltip]:not([popover]):hover::before, *[flip-tooltip]:not([popover]):focus::before, *[flip-tooltip]:not([popover]):focus-visible::before {
+  [flip-tooltip]:not([popover]):hover::before, [flip-tooltip]:not([popover]):focus::before, [flip-tooltip]:not([popover]):focus-visible::before {
     content: attr(flip-tooltip);
   }
   [popover][flip-tooltip] {
@@ -301,9 +301,6 @@
   [popover][flip-tooltip] {
     border: none;
     inset: auto;
-  }
-  [popover][flip-tooltip]:not(:popover-open) {
-    opacity: 0;
   }
 }
 
