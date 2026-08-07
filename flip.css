@@ -260,6 +260,7 @@
     position-area: attr(flip-position type(<custom-ident>), top) center;
     margin: 4px;
     position-try-fallbacks: flip-block, --flip-left, --flip-left flip-inline;
+    font-size: 1rem;
     content: attr(flip-tooltip);
     background-color: var(--flip-c-tertiary-900);
     color: var(--flip-c-on-tertiary);

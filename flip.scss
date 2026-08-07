@@ -101,6 +101,10 @@
     corner-shape: squircle;
   }
 
+  @mixin flip-text {
+    font-size: 1rem;
+  }
+
   @position-try --flip-left {
     position-area: left center;
     margin-right: 4px;
@@ -230,6 +234,7 @@
       &::before {
         @include flip-border;
         @include flip-anchor;
+        @include flip-text;
         content: attr(flip-tooltip);
         background-color: var(--flip-c-tertiary-900);
         color: var(--flip-c-on-tertiary);
