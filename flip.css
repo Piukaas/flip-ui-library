@@ -109,6 +109,10 @@
   }
 }
 @layer flip-components {
+  @position-try --flip-left {
+    position-area: left center;
+    margin-right: 4px;
+  }
   /* @doc
     Title: Buttons
     Description: Core interactive elements that inherit theme tokens and transitions across 5 size tiers.
@@ -129,9 +133,14 @@
       <button flip-size="lg" flip-variant="danger">Large Danger</button>
       <button disabled>Disabled State</button>
       <button aria-disabled="true" flip-variant="secondary">Aria Disabled</button>
+      <button flip-tooltip="Tooltip">Hover for Tooltip</button>
+      <button flip-tooltip="Tooltip on the right" flip-position="right">Hover for Right Tooltip</button>
     ]
    */
   :where(button) {
+    border: var(--flip-control-border);
+    border-radius: var(--flip-control-radius);
+    corner-shape: squircle;
     --flip-height: var(--flip-control-height-md);
     --flip-padding-y: var(--flip-control-padding-y-md);
     --flip-padding-x: var(--flip-control-padding-x-md);
@@ -139,13 +148,10 @@
     height: var(--flip-height);
     padding: var(--flip-padding-y) var(--flip-padding-x);
     font-size: var(--flip-font-size);
-    border-radius: var(--flip-control-radius);
-    border: var(--flip-control-border);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    corner-shape: squircle;
   }
   :where(button):where([flip-size=xs]) {
     --flip-height: var(--flip-control-height-xs);
@@ -243,6 +249,29 @@
   }
   [flip-off=all], [flip-off=all] * {
     all: revert-layer;
+  }
+  /* ---- tooltip mechanism ---- */
+  *[flip-tooltip]:hover::before, *[flip-tooltip]:focus::before, *[flip-tooltip]:focus-visible::before {
+    border: var(--flip-control-border);
+    border-radius: var(--flip-control-radius);
+    corner-shape: squircle;
+    position: absolute;
+    position-anchor: auto;
+    position-area: attr(flip-position type(<custom-ident>), top) center;
+    margin: 4px;
+    position-try-fallbacks: flip-block, --flip-left, --flip-left flip-inline;
+    content: attr(flip-tooltip);
+    background-color: var(--flip-c-tertiary-900);
+    color: var(--flip-c-on-tertiary);
+    padding: var(--flip-control-padding-y-sm) var(--flip-control-padding-x-sm);
+    opacity: 1;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in;
+  }
+  @starting-style {
+    *[flip-tooltip]:hover::before, *[flip-tooltip]:focus::before, *[flip-tooltip]:focus-visible::before {
+      opacity: 0;
+    }
   }
 }
 
