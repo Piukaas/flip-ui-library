@@ -143,16 +143,6 @@
       <button flip-size="lg" flip-variant="danger">Large Danger</button>
       <button disabled>Disabled State</button>
       <button aria-disabled="true" flip-variant="secondary">Aria Disabled</button>
-      <button flip-tooltip="Tooltip">Hover for Tooltip</button>
-      <button flip-tooltip="Tooltip on the right" flip-position="right">Hover for Right Tooltip</button>
-      <button popovertarget="rich-tooltip-1">Click for Rich Tooltip</button>
-      <div id="rich-tooltip-1" popover flip-tooltip><button>Button-ception</button></div>
-      <div flip-carousel>
-        <article style="flex: 0 0 100%">Slide 1</article>
-        <article style="flex: 0 0 100%">Slide 2</article>
-        <article style="flex: 0 0 100%">Slide 3</article>
-        <article style="flex: 0 0 100%">Slide 4</article>
-      </div>
     ]
    */
   button, [role=button] {
@@ -279,17 +269,6 @@
     cursor: not-allowed;
     opacity: 0.6;
   }
-  article {
-    font-size: 1rem;
-    corner-shape: squircle;
-    border: var(--flip-control-border);
-    border-radius: var(--flip-control-radius);
-    aspect-ratio: 3/2;
-    padding: 2rem;
-    background-color: var(--flip-c-tertiary-900);
-    color: var(--flip-c-on-tertiary);
-    text-align: center;
-  }
   /* ---- opt-out mechanism ---- */
   [flip-off] {
     all: revert-layer;
@@ -297,7 +276,16 @@
   [flip-off=all], [flip-off=all] * {
     all: revert-layer;
   }
-  /* ---- tooltip mechanism ---- */
+  /* @doc
+      Title: Tooltips
+      Description: Contextual hover and popover overlays anchored relative to target controls.
+      Preview: [
+        <button flip-tooltip="Tooltip">Hover for Tooltip</button>
+        <button flip-tooltip="Tooltip on the right" flip-position="right">Hover for Right Tooltip</button>
+        <button popovertarget="rich-tooltip-1">Click for Rich Tooltip</button>
+        <div id="rich-tooltip-1" popover flip-tooltip><button>Button-ception</button></div>
+      ]
+   */
   [flip-tooltip]:not([popover]):hover::before, [flip-tooltip]:not([popover]):focus::before, [flip-tooltip]:not([popover]):focus-visible::before {
     corner-shape: squircle;
     border: var(--flip-control-border);
@@ -347,7 +335,18 @@
     border: none;
     inset: auto;
   }
-  /* ---- carrousel mechanism ---- */
+  /* @doc
+      Title: Carousel
+      Description: Native CSS scroll-driven carousel with snap alignment and scroll markers.
+      Preview: [
+        <div flip-carousel>
+          <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=1000&auto=format&fit=crop" alt="Scenic mountain landscape" style="flex: 0 0 100%; width: 100%; height: 400px; object-fit: cover;" />
+          <img src="https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=1000&auto=format&fit=crop" alt="Waterfall flowing through a green forest" style="flex: 0 0 100%; width: 100%; height: 400px; object-fit: cover;" />
+          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1000&auto=format&fit=crop" alt="Yosemite valley view" style="flex: 0 0 100%; width: 100%; height: 400px; object-fit: cover;" />
+          <img src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?q=80&w=1000&auto=format&fit=crop" alt="Sunlit vibrant flower field" style="flex: 0 0 100%; width: 100%; height: 400px; object-fit: cover;" />
+        </div>
+      ]
+   */
   [flip-carousel] {
     width: 100%;
     overflow-x: auto;
