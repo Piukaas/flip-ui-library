@@ -32,7 +32,7 @@
     @return #{$color-var};
   }
 
-  :where(:root) {
+  :root {
     --flip-c-primary: oklch(0.62 0.23 28);
     --flip-c-secondary: oklch(0.64 0.06 165);
     --flip-c-tertiary: oklch(0.28 0.03 250);
@@ -95,19 +95,19 @@
 }
 
 @layer flip-components {
-  @mixin flip-border {
+  @mixin flip-border($shape: "") {
+    @if $shape == "round" {
+      --flip-control-radius: 100vw;
+    } @else {
+      corner-shape: squircle;
+    }
+
     border: var(--flip-control-border);
     border-radius: var(--flip-control-radius);
-    corner-shape: squircle;
   }
 
   @mixin flip-text {
     font-size: 1rem;
-  }
-
-  @position-try --flip-left {
-    position-area: left center;
-    margin-right: 4px;
   }
 
   @mixin flip-anchor {
@@ -115,15 +115,15 @@
     position-anchor: auto;
     position-area: #{'attr(flip-position type(<custom-ident>), top)'} center;
     margin: 4px;
-    position-try-fallbacks: flip-block, --flip-left, --flip-left flip-inline;
+    position-try-fallbacks: top center, bottom center, left center, right center;
   }
 
-  @mixin flip-control {
-    @include flip-border;
-    --flip-height: var(--flip-control-height-md);
-    --flip-padding-y: var(--flip-control-padding-y-md);
-    --flip-padding-x: var(--flip-control-padding-x-md);
-    --flip-font-size: var(--flip-control-font-size-md);
+  @mixin flip-control($shape: "", $size: "md") {
+    @include flip-border($shape);
+    --flip-height: var(--flip-control-height-#{$size});
+    --flip-padding-y: var(--flip-control-padding-y-#{$size});
+    --flip-padding-x: var(--flip-control-padding-x-#{$size});
+    --flip-font-size: var(--flip-control-font-size-#{$size});
 
     height: var(--flip-height);
     padding: var(--flip-padding-y) var(--flip-padding-x);
@@ -134,32 +134,43 @@
     justify-content: center;
     gap: 0.5rem;
 
+    @if $shape == "round" {
+      aspect-ratio: 1;
+      padding-inline: var(--flip-padding-y);
+    }
+
     @each $size in xs, sm, lg, xl {
-      &:where([flip-size="#{$size}"]) {
+      &[flip-size="#{$size}"] {
         --flip-height: var(--flip-control-height-#{$size});
         --flip-padding-y: var(--flip-control-padding-y-#{$size});
         --flip-padding-x: var(--flip-control-padding-x-#{$size});
         --flip-font-size: var(--flip-control-font-size-#{$size});
       }
     }
+
+    &[flip-shape="round"] {
+      --flip-control-radius: 100vw;
+      aspect-ratio: 1;
+      padding-inline: var(--flip-padding-y);
+    }
   }
 
-  @mixin flip-variant {
+  @mixin flip-variant($default: primary) {
     transition: background-color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
     color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
     border-color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
     box-shadow 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
 
-    --flip-bg: var(--flip-c-primary-500);
-    --flip-bg-hover: var(--flip-c-primary-600);
-    --flip-bg-active: var(--flip-c-primary-700);
-    --flip-color: var(--flip-c-on-primary);
+    --flip-bg: var(--flip-c-#{$default}-500);
+    --flip-bg-hover: var(--flip-c-#{$default}-600);
+    --flip-bg-active: var(--flip-c-#{$default}-700);
+    --flip-color: var(--flip-c-on-#{$default});
 
     background: var(--flip-bg);
     color: var(--flip-color);
 
     @each $variant in primary, secondary, tertiary, danger, warning, information, success {
-      &:where([flip-variant="#{$variant}"]) {
+      &[flip-variant="#{$variant}"] {
         --flip-bg: var(--flip-c-#{$variant}-500);
         --flip-bg-hover: var(--flip-c-#{$variant}-600);
         --flip-bg-active: var(--flip-c-#{$variant}-700);
@@ -173,15 +184,16 @@
     user-select: none;
     touch-action: manipulation;
 
-    &:where(:hover:not(:disabled, [aria-disabled="true"])) {
-      background: var(--flip-bg-hover, var(--flip-c-primary-600));
+    &:hover {
+      background: var(--flip-bg-hover);
     }
 
-    &:where(:active:not(:disabled, [aria-disabled="true"])) {
-      background: var(--flip-bg-active, var(--flip-c-primary-700));
+    &:active {
+      background: var(--flip-bg-active);
     }
 
-    &:where(:disabled, [aria-disabled="true"]) {
+    &:disabled, :is([aria-disabled="true"]) {
+      background: var(--flip-bg);
       cursor: not-allowed;
       opacity: 0.6;
     }
@@ -211,9 +223,15 @@
       <button flip-tooltip="Tooltip on the right" flip-position="right">Hover for Right Tooltip</button>
       <button popovertarget="rich-tooltip-1">Click for Rich Tooltip</button>
       <div id="rich-tooltip-1" popover flip-tooltip><button>Button-ception</button></div>
+      <div flip-carousel>
+        <div>Slide 1</div>
+        <div>Slide 2</div>
+        <div>Slide 3</div>
+        <div>Slide 4</div>
+      </div>
     ]
    */
-  :where(button) {
+  button, [role="button"] {
     @include flip-control;
     @include flip-variant;
     @include flip-interactable;
@@ -259,5 +277,75 @@
     @include flip-tooltip-styles;
     border: none;
     inset: auto;
+  }
+
+  /* ---- carrousel mechanism ---- */
+  [flip-carousel] {
+    width: 100%;
+    overflow-x: auto;
+    margin: 3rem auto;
+    display: flex;
+    gap: 1rem;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scroll-marker-group: after;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    &::scroll-marker-group {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+    }
+
+    &::scroll-button(left) {
+      content: '←';
+      position-area: left center;
+      translate: 50%;
+    }
+
+    &::scroll-button(right) {
+      content: '→';
+      position-area: right center;
+      translate: -50%;
+    }
+
+    &::scroll-button(left),
+    &::scroll-button(right) {
+      @include flip-control(round, sm);
+      @include flip-variant;
+      @include flip-interactable;
+      position: fixed;
+      position-anchor: auto;
+    }
+
+    & > * {
+      scroll-snap-align: start;
+      flex: 0 0 20rem;
+      aspect-ratio: 5 / 3;
+      background-color: var(--flip-c-tertiary-900);
+      padding: 1rem;
+      @include flip-border;
+      text-align: center;
+      align-content: center;
+
+      @media (max-width: 500px) {
+        flex: 0 0 100%;
+      }
+
+      &::scroll-marker {
+        @include flip-control(round, sm);
+        @include flip-variant(secondary);
+        @include flip-interactable;
+        content: '';
+
+        &:target-current {
+          @include flip-variant(primary);
+        }
+      }
+    }
   }
 }

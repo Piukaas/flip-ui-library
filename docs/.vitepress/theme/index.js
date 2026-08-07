@@ -10,7 +10,7 @@ if (typeof window !== 'undefined') {
             const shadow = this.attachShadow({mode: 'open'})
 
             const processedStyles = flipStyles
-                .replaceAll(':where(:root)', ':host')
+                .replaceAll(':root', ':host')
 
             const styleElement = document.createElement('style')
             styleElement.textContent = processedStyles

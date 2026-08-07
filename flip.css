@@ -1,6 +1,7 @@
+@charset "UTF-8";
 @layer flip-tokens, flip-components, flip-utilities;
 @layer flip-tokens {
-  :where(:root) {
+  :root {
     --flip-c-primary: oklch(0.62 0.23 28);
     --flip-c-secondary: oklch(0.64 0.06 165);
     --flip-c-tertiary: oklch(0.28 0.03 250);
@@ -109,10 +110,6 @@
   }
 }
 @layer flip-components {
-  @position-try --flip-left {
-    position-area: left center;
-    margin-right: 4px;
-  }
   /* @doc
     Title: Buttons
     Description: Core interactive elements that inherit theme tokens and transitions across 5 size tiers.
@@ -137,12 +134,18 @@
       <button flip-tooltip="Tooltip on the right" flip-position="right">Hover for Right Tooltip</button>
       <button popovertarget="rich-tooltip-1">Click for Rich Tooltip</button>
       <div id="rich-tooltip-1" popover flip-tooltip><button>Button-ception</button></div>
+      <div flip-carousel>
+        <div>Slide 1</div>
+        <div>Slide 2</div>
+        <div>Slide 3</div>
+        <div>Slide 4</div>
+      </div>
     ]
    */
-  :where(button) {
+  button, [role=button] {
+    corner-shape: squircle;
     border: var(--flip-control-border);
     border-radius: var(--flip-control-radius);
-    corner-shape: squircle;
     --flip-height: var(--flip-control-height-md);
     --flip-padding-y: var(--flip-control-padding-y-md);
     --flip-padding-x: var(--flip-control-padding-x-md);
@@ -155,31 +158,36 @@
     justify-content: center;
     gap: 0.5rem;
   }
-  :where(button):where([flip-size=xs]) {
+  button[flip-size=xs], [role=button][flip-size=xs] {
     --flip-height: var(--flip-control-height-xs);
     --flip-padding-y: var(--flip-control-padding-y-xs);
     --flip-padding-x: var(--flip-control-padding-x-xs);
     --flip-font-size: var(--flip-control-font-size-xs);
   }
-  :where(button):where([flip-size=sm]) {
+  button[flip-size=sm], [role=button][flip-size=sm] {
     --flip-height: var(--flip-control-height-sm);
     --flip-padding-y: var(--flip-control-padding-y-sm);
     --flip-padding-x: var(--flip-control-padding-x-sm);
     --flip-font-size: var(--flip-control-font-size-sm);
   }
-  :where(button):where([flip-size=lg]) {
+  button[flip-size=lg], [role=button][flip-size=lg] {
     --flip-height: var(--flip-control-height-lg);
     --flip-padding-y: var(--flip-control-padding-y-lg);
     --flip-padding-x: var(--flip-control-padding-x-lg);
     --flip-font-size: var(--flip-control-font-size-lg);
   }
-  :where(button):where([flip-size=xl]) {
+  button[flip-size=xl], [role=button][flip-size=xl] {
     --flip-height: var(--flip-control-height-xl);
     --flip-padding-y: var(--flip-control-padding-y-xl);
     --flip-padding-x: var(--flip-control-padding-x-xl);
     --flip-font-size: var(--flip-control-font-size-xl);
   }
-  :where(button) {
+  button[flip-shape=round], [role=button][flip-shape=round] {
+    --flip-control-radius: 100vw;
+    aspect-ratio: 1;
+    padding-inline: var(--flip-padding-y);
+  }
+  button, [role=button] {
     transition: background-color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
     --flip-bg: var(--flip-c-primary-500);
     --flip-bg-hover: var(--flip-c-primary-600);
@@ -188,60 +196,61 @@
     background: var(--flip-bg);
     color: var(--flip-color);
   }
-  :where(button):where([flip-variant=primary]) {
+  button[flip-variant=primary], [role=button][flip-variant=primary] {
     --flip-bg: var(--flip-c-primary-500);
     --flip-bg-hover: var(--flip-c-primary-600);
     --flip-bg-active: var(--flip-c-primary-700);
     --flip-color: var(--flip-c-on-primary);
   }
-  :where(button):where([flip-variant=secondary]) {
+  button[flip-variant=secondary], [role=button][flip-variant=secondary] {
     --flip-bg: var(--flip-c-secondary-500);
     --flip-bg-hover: var(--flip-c-secondary-600);
     --flip-bg-active: var(--flip-c-secondary-700);
     --flip-color: var(--flip-c-on-secondary);
   }
-  :where(button):where([flip-variant=tertiary]) {
+  button[flip-variant=tertiary], [role=button][flip-variant=tertiary] {
     --flip-bg: var(--flip-c-tertiary-500);
     --flip-bg-hover: var(--flip-c-tertiary-600);
     --flip-bg-active: var(--flip-c-tertiary-700);
     --flip-color: var(--flip-c-on-tertiary);
   }
-  :where(button):where([flip-variant=danger]) {
+  button[flip-variant=danger], [role=button][flip-variant=danger] {
     --flip-bg: var(--flip-c-danger-500);
     --flip-bg-hover: var(--flip-c-danger-600);
     --flip-bg-active: var(--flip-c-danger-700);
     --flip-color: var(--flip-c-on-danger);
   }
-  :where(button):where([flip-variant=warning]) {
+  button[flip-variant=warning], [role=button][flip-variant=warning] {
     --flip-bg: var(--flip-c-warning-500);
     --flip-bg-hover: var(--flip-c-warning-600);
     --flip-bg-active: var(--flip-c-warning-700);
     --flip-color: var(--flip-c-on-warning);
   }
-  :where(button):where([flip-variant=information]) {
+  button[flip-variant=information], [role=button][flip-variant=information] {
     --flip-bg: var(--flip-c-information-500);
     --flip-bg-hover: var(--flip-c-information-600);
     --flip-bg-active: var(--flip-c-information-700);
     --flip-color: var(--flip-c-on-information);
   }
-  :where(button):where([flip-variant=success]) {
+  button[flip-variant=success], [role=button][flip-variant=success] {
     --flip-bg: var(--flip-c-success-500);
     --flip-bg-hover: var(--flip-c-success-600);
     --flip-bg-active: var(--flip-c-success-700);
     --flip-color: var(--flip-c-on-success);
   }
-  :where(button) {
+  button, [role=button] {
     cursor: pointer;
     user-select: none;
     touch-action: manipulation;
   }
-  :where(button):where(:hover:not(:disabled, [aria-disabled=true])) {
-    background: var(--flip-bg-hover, var(--flip-c-primary-600));
+  button:hover, [role=button]:hover {
+    background: var(--flip-bg-hover);
   }
-  :where(button):where(:active:not(:disabled, [aria-disabled=true])) {
-    background: var(--flip-bg-active, var(--flip-c-primary-700));
+  button:active, [role=button]:active {
+    background: var(--flip-bg-active);
   }
-  :where(button):where(:disabled, [aria-disabled=true]) {
+  button:disabled, button :is([aria-disabled=true]), [role=button]:disabled, [role=button] :is([aria-disabled=true]) {
+    background: var(--flip-bg);
     cursor: not-allowed;
     opacity: 0.6;
   }
@@ -254,14 +263,14 @@
   }
   /* ---- tooltip mechanism ---- */
   [flip-tooltip]:not([popover]):hover::before, [flip-tooltip]:not([popover]):focus::before, [flip-tooltip]:not([popover]):focus-visible::before {
+    corner-shape: squircle;
     border: var(--flip-control-border);
     border-radius: var(--flip-control-radius);
-    corner-shape: squircle;
     position: absolute;
     position-anchor: auto;
     position-area: attr(flip-position type(<custom-ident>), top) center;
     margin: 4px;
-    position-try-fallbacks: flip-block, --flip-left, --flip-left flip-inline;
+    position-try-fallbacks: top center, bottom center, left center, right center;
     font-size: 1rem;
     background-color: var(--flip-c-tertiary-900);
     color: var(--flip-c-on-tertiary);
@@ -278,14 +287,14 @@
     content: attr(flip-tooltip);
   }
   [popover][flip-tooltip] {
+    corner-shape: squircle;
     border: var(--flip-control-border);
     border-radius: var(--flip-control-radius);
-    corner-shape: squircle;
     position: absolute;
     position-anchor: auto;
     position-area: attr(flip-position type(<custom-ident>), top) center;
     margin: 4px;
-    position-try-fallbacks: flip-block, --flip-left, --flip-left flip-inline;
+    position-try-fallbacks: top center, bottom center, left center, right center;
     font-size: 1rem;
     background-color: var(--flip-c-tertiary-900);
     color: var(--flip-c-on-tertiary);
@@ -301,6 +310,339 @@
   [popover][flip-tooltip] {
     border: none;
     inset: auto;
+  }
+  /* ---- carrousel mechanism ---- */
+  [flip-carousel] {
+    width: 100%;
+    overflow-x: auto;
+    margin: 3rem auto;
+    display: flex;
+    gap: 1rem;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scroll-marker-group: after;
+  }
+  [flip-carousel]::-webkit-scrollbar {
+    display: none;
+  }
+  [flip-carousel]::scroll-marker-group {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+  }
+  [flip-carousel]::scroll-button(left) {
+    content: "←";
+    position-area: left center;
+    translate: 50%;
+  }
+  [flip-carousel]::scroll-button(right) {
+    content: "→";
+    position-area: right center;
+    translate: -50%;
+  }
+  [flip-carousel]::scroll-button(left), [flip-carousel]::scroll-button(right) {
+    --flip-control-radius: 100vw;
+    border: var(--flip-control-border);
+    border-radius: var(--flip-control-radius);
+    --flip-height: var(--flip-control-height-sm);
+    --flip-padding-y: var(--flip-control-padding-y-sm);
+    --flip-padding-x: var(--flip-control-padding-x-sm);
+    --flip-font-size: var(--flip-control-font-size-sm);
+    height: var(--flip-height);
+    padding: var(--flip-padding-y) var(--flip-padding-x);
+    font-size: var(--flip-font-size);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    aspect-ratio: 1;
+    padding-inline: var(--flip-padding-y);
+  }
+  [flip-carousel]::scroll-button(left)[flip-size=xs], [flip-carousel]::scroll-button(right)[flip-size=xs] {
+    --flip-height: var(--flip-control-height-xs);
+    --flip-padding-y: var(--flip-control-padding-y-xs);
+    --flip-padding-x: var(--flip-control-padding-x-xs);
+    --flip-font-size: var(--flip-control-font-size-xs);
+  }
+  [flip-carousel]::scroll-button(left)[flip-size=sm], [flip-carousel]::scroll-button(right)[flip-size=sm] {
+    --flip-height: var(--flip-control-height-sm);
+    --flip-padding-y: var(--flip-control-padding-y-sm);
+    --flip-padding-x: var(--flip-control-padding-x-sm);
+    --flip-font-size: var(--flip-control-font-size-sm);
+  }
+  [flip-carousel]::scroll-button(left)[flip-size=lg], [flip-carousel]::scroll-button(right)[flip-size=lg] {
+    --flip-height: var(--flip-control-height-lg);
+    --flip-padding-y: var(--flip-control-padding-y-lg);
+    --flip-padding-x: var(--flip-control-padding-x-lg);
+    --flip-font-size: var(--flip-control-font-size-lg);
+  }
+  [flip-carousel]::scroll-button(left)[flip-size=xl], [flip-carousel]::scroll-button(right)[flip-size=xl] {
+    --flip-height: var(--flip-control-height-xl);
+    --flip-padding-y: var(--flip-control-padding-y-xl);
+    --flip-padding-x: var(--flip-control-padding-x-xl);
+    --flip-font-size: var(--flip-control-font-size-xl);
+  }
+  [flip-carousel]::scroll-button(left)[flip-shape=round], [flip-carousel]::scroll-button(right)[flip-shape=round] {
+    --flip-control-radius: 100vw;
+    aspect-ratio: 1;
+    padding-inline: var(--flip-padding-y);
+  }
+  [flip-carousel]::scroll-button(left), [flip-carousel]::scroll-button(right) {
+    transition: background-color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    --flip-bg: var(--flip-c-primary-500);
+    --flip-bg-hover: var(--flip-c-primary-600);
+    --flip-bg-active: var(--flip-c-primary-700);
+    --flip-color: var(--flip-c-on-primary);
+    background: var(--flip-bg);
+    color: var(--flip-color);
+  }
+  [flip-carousel]::scroll-button(left)[flip-variant=primary], [flip-carousel]::scroll-button(right)[flip-variant=primary] {
+    --flip-bg: var(--flip-c-primary-500);
+    --flip-bg-hover: var(--flip-c-primary-600);
+    --flip-bg-active: var(--flip-c-primary-700);
+    --flip-color: var(--flip-c-on-primary);
+  }
+  [flip-carousel]::scroll-button(left)[flip-variant=secondary], [flip-carousel]::scroll-button(right)[flip-variant=secondary] {
+    --flip-bg: var(--flip-c-secondary-500);
+    --flip-bg-hover: var(--flip-c-secondary-600);
+    --flip-bg-active: var(--flip-c-secondary-700);
+    --flip-color: var(--flip-c-on-secondary);
+  }
+  [flip-carousel]::scroll-button(left)[flip-variant=tertiary], [flip-carousel]::scroll-button(right)[flip-variant=tertiary] {
+    --flip-bg: var(--flip-c-tertiary-500);
+    --flip-bg-hover: var(--flip-c-tertiary-600);
+    --flip-bg-active: var(--flip-c-tertiary-700);
+    --flip-color: var(--flip-c-on-tertiary);
+  }
+  [flip-carousel]::scroll-button(left)[flip-variant=danger], [flip-carousel]::scroll-button(right)[flip-variant=danger] {
+    --flip-bg: var(--flip-c-danger-500);
+    --flip-bg-hover: var(--flip-c-danger-600);
+    --flip-bg-active: var(--flip-c-danger-700);
+    --flip-color: var(--flip-c-on-danger);
+  }
+  [flip-carousel]::scroll-button(left)[flip-variant=warning], [flip-carousel]::scroll-button(right)[flip-variant=warning] {
+    --flip-bg: var(--flip-c-warning-500);
+    --flip-bg-hover: var(--flip-c-warning-600);
+    --flip-bg-active: var(--flip-c-warning-700);
+    --flip-color: var(--flip-c-on-warning);
+  }
+  [flip-carousel]::scroll-button(left)[flip-variant=information], [flip-carousel]::scroll-button(right)[flip-variant=information] {
+    --flip-bg: var(--flip-c-information-500);
+    --flip-bg-hover: var(--flip-c-information-600);
+    --flip-bg-active: var(--flip-c-information-700);
+    --flip-color: var(--flip-c-on-information);
+  }
+  [flip-carousel]::scroll-button(left)[flip-variant=success], [flip-carousel]::scroll-button(right)[flip-variant=success] {
+    --flip-bg: var(--flip-c-success-500);
+    --flip-bg-hover: var(--flip-c-success-600);
+    --flip-bg-active: var(--flip-c-success-700);
+    --flip-color: var(--flip-c-on-success);
+  }
+  [flip-carousel]::scroll-button(left), [flip-carousel]::scroll-button(right) {
+    cursor: pointer;
+    user-select: none;
+    touch-action: manipulation;
+  }
+  [flip-carousel]::scroll-button(left):hover, [flip-carousel]::scroll-button(right):hover {
+    background: var(--flip-bg-hover);
+  }
+  [flip-carousel]::scroll-button(left):active, [flip-carousel]::scroll-button(right):active {
+    background: var(--flip-bg-active);
+  }
+  [flip-carousel]::scroll-button(left):disabled, [flip-carousel]::scroll-button(left) :is([aria-disabled=true]), [flip-carousel]::scroll-button(right):disabled, [flip-carousel]::scroll-button(right) :is([aria-disabled=true]) {
+    background: var(--flip-bg);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  [flip-carousel]::scroll-button(left), [flip-carousel]::scroll-button(right) {
+    position: fixed;
+    position-anchor: auto;
+  }
+  [flip-carousel] > * {
+    scroll-snap-align: start;
+    flex: 0 0 20rem;
+    aspect-ratio: 5/3;
+    background-color: var(--flip-c-tertiary-900);
+    padding: 1rem;
+    corner-shape: squircle;
+    border: var(--flip-control-border);
+    border-radius: var(--flip-control-radius);
+    text-align: center;
+    align-content: center;
+  }
+  @media (max-width: 500px) {
+    [flip-carousel] > * {
+      flex: 0 0 100%;
+    }
+  }
+  [flip-carousel] > *::scroll-marker {
+    --flip-control-radius: 100vw;
+    border: var(--flip-control-border);
+    border-radius: var(--flip-control-radius);
+    --flip-height: var(--flip-control-height-sm);
+    --flip-padding-y: var(--flip-control-padding-y-sm);
+    --flip-padding-x: var(--flip-control-padding-x-sm);
+    --flip-font-size: var(--flip-control-font-size-sm);
+    height: var(--flip-height);
+    padding: var(--flip-padding-y) var(--flip-padding-x);
+    font-size: var(--flip-font-size);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    aspect-ratio: 1;
+    padding-inline: var(--flip-padding-y);
+  }
+  [flip-carousel] > *::scroll-marker[flip-size=xs] {
+    --flip-height: var(--flip-control-height-xs);
+    --flip-padding-y: var(--flip-control-padding-y-xs);
+    --flip-padding-x: var(--flip-control-padding-x-xs);
+    --flip-font-size: var(--flip-control-font-size-xs);
+  }
+  [flip-carousel] > *::scroll-marker[flip-size=sm] {
+    --flip-height: var(--flip-control-height-sm);
+    --flip-padding-y: var(--flip-control-padding-y-sm);
+    --flip-padding-x: var(--flip-control-padding-x-sm);
+    --flip-font-size: var(--flip-control-font-size-sm);
+  }
+  [flip-carousel] > *::scroll-marker[flip-size=lg] {
+    --flip-height: var(--flip-control-height-lg);
+    --flip-padding-y: var(--flip-control-padding-y-lg);
+    --flip-padding-x: var(--flip-control-padding-x-lg);
+    --flip-font-size: var(--flip-control-font-size-lg);
+  }
+  [flip-carousel] > *::scroll-marker[flip-size=xl] {
+    --flip-height: var(--flip-control-height-xl);
+    --flip-padding-y: var(--flip-control-padding-y-xl);
+    --flip-padding-x: var(--flip-control-padding-x-xl);
+    --flip-font-size: var(--flip-control-font-size-xl);
+  }
+  [flip-carousel] > *::scroll-marker[flip-shape=round] {
+    --flip-control-radius: 100vw;
+    aspect-ratio: 1;
+    padding-inline: var(--flip-padding-y);
+  }
+  [flip-carousel] > *::scroll-marker {
+    transition: background-color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    --flip-bg: var(--flip-c-secondary-500);
+    --flip-bg-hover: var(--flip-c-secondary-600);
+    --flip-bg-active: var(--flip-c-secondary-700);
+    --flip-color: var(--flip-c-on-secondary);
+    background: var(--flip-bg);
+    color: var(--flip-color);
+  }
+  [flip-carousel] > *::scroll-marker[flip-variant=primary] {
+    --flip-bg: var(--flip-c-primary-500);
+    --flip-bg-hover: var(--flip-c-primary-600);
+    --flip-bg-active: var(--flip-c-primary-700);
+    --flip-color: var(--flip-c-on-primary);
+  }
+  [flip-carousel] > *::scroll-marker[flip-variant=secondary] {
+    --flip-bg: var(--flip-c-secondary-500);
+    --flip-bg-hover: var(--flip-c-secondary-600);
+    --flip-bg-active: var(--flip-c-secondary-700);
+    --flip-color: var(--flip-c-on-secondary);
+  }
+  [flip-carousel] > *::scroll-marker[flip-variant=tertiary] {
+    --flip-bg: var(--flip-c-tertiary-500);
+    --flip-bg-hover: var(--flip-c-tertiary-600);
+    --flip-bg-active: var(--flip-c-tertiary-700);
+    --flip-color: var(--flip-c-on-tertiary);
+  }
+  [flip-carousel] > *::scroll-marker[flip-variant=danger] {
+    --flip-bg: var(--flip-c-danger-500);
+    --flip-bg-hover: var(--flip-c-danger-600);
+    --flip-bg-active: var(--flip-c-danger-700);
+    --flip-color: var(--flip-c-on-danger);
+  }
+  [flip-carousel] > *::scroll-marker[flip-variant=warning] {
+    --flip-bg: var(--flip-c-warning-500);
+    --flip-bg-hover: var(--flip-c-warning-600);
+    --flip-bg-active: var(--flip-c-warning-700);
+    --flip-color: var(--flip-c-on-warning);
+  }
+  [flip-carousel] > *::scroll-marker[flip-variant=information] {
+    --flip-bg: var(--flip-c-information-500);
+    --flip-bg-hover: var(--flip-c-information-600);
+    --flip-bg-active: var(--flip-c-information-700);
+    --flip-color: var(--flip-c-on-information);
+  }
+  [flip-carousel] > *::scroll-marker[flip-variant=success] {
+    --flip-bg: var(--flip-c-success-500);
+    --flip-bg-hover: var(--flip-c-success-600);
+    --flip-bg-active: var(--flip-c-success-700);
+    --flip-color: var(--flip-c-on-success);
+  }
+  [flip-carousel] > *::scroll-marker {
+    cursor: pointer;
+    user-select: none;
+    touch-action: manipulation;
+  }
+  [flip-carousel] > *::scroll-marker:hover {
+    background: var(--flip-bg-hover);
+  }
+  [flip-carousel] > *::scroll-marker:active {
+    background: var(--flip-bg-active);
+  }
+  [flip-carousel] > *::scroll-marker:disabled, [flip-carousel] > *::scroll-marker :is([aria-disabled=true]) {
+    background: var(--flip-bg);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  [flip-carousel] > *::scroll-marker {
+    content: "";
+  }
+  [flip-carousel] > *::scroll-marker:target-current {
+    transition: background-color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    --flip-bg: var(--flip-c-primary-500);
+    --flip-bg-hover: var(--flip-c-primary-600);
+    --flip-bg-active: var(--flip-c-primary-700);
+    --flip-color: var(--flip-c-on-primary);
+    background: var(--flip-bg);
+    color: var(--flip-color);
+  }
+  [flip-carousel] > *::scroll-marker:target-current[flip-variant=primary] {
+    --flip-bg: var(--flip-c-primary-500);
+    --flip-bg-hover: var(--flip-c-primary-600);
+    --flip-bg-active: var(--flip-c-primary-700);
+    --flip-color: var(--flip-c-on-primary);
+  }
+  [flip-carousel] > *::scroll-marker:target-current[flip-variant=secondary] {
+    --flip-bg: var(--flip-c-secondary-500);
+    --flip-bg-hover: var(--flip-c-secondary-600);
+    --flip-bg-active: var(--flip-c-secondary-700);
+    --flip-color: var(--flip-c-on-secondary);
+  }
+  [flip-carousel] > *::scroll-marker:target-current[flip-variant=tertiary] {
+    --flip-bg: var(--flip-c-tertiary-500);
+    --flip-bg-hover: var(--flip-c-tertiary-600);
+    --flip-bg-active: var(--flip-c-tertiary-700);
+    --flip-color: var(--flip-c-on-tertiary);
+  }
+  [flip-carousel] > *::scroll-marker:target-current[flip-variant=danger] {
+    --flip-bg: var(--flip-c-danger-500);
+    --flip-bg-hover: var(--flip-c-danger-600);
+    --flip-bg-active: var(--flip-c-danger-700);
+    --flip-color: var(--flip-c-on-danger);
+  }
+  [flip-carousel] > *::scroll-marker:target-current[flip-variant=warning] {
+    --flip-bg: var(--flip-c-warning-500);
+    --flip-bg-hover: var(--flip-c-warning-600);
+    --flip-bg-active: var(--flip-c-warning-700);
+    --flip-color: var(--flip-c-on-warning);
+  }
+  [flip-carousel] > *::scroll-marker:target-current[flip-variant=information] {
+    --flip-bg: var(--flip-c-information-500);
+    --flip-bg-hover: var(--flip-c-information-600);
+    --flip-bg-active: var(--flip-c-information-700);
+    --flip-color: var(--flip-c-on-information);
+  }
+  [flip-carousel] > *::scroll-marker:target-current[flip-variant=success] {
+    --flip-bg: var(--flip-c-success-500);
+    --flip-bg-hover: var(--flip-c-success-600);
+    --flip-bg-active: var(--flip-c-success-700);
+    --flip-color: var(--flip-c-on-success);
   }
 }
 
